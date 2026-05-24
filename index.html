@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GHAZY.DEV | Cyber-Minimalist Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Geist:wght@100;300;400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#dcb7fe",
+                        "on-secondary-fixed-variant": "#004e5a",
+                        "tertiary-fixed-dim": "#ddb8ff",
+                        "on-tertiary-fixed-variant": "#573976",
+                        "surface-container-low": "#131b2e",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "surface-overlay": "rgba(11, 19, 38, 0.6)",
+                        "surface-bright": "#31394e",
+                        "on-primary": "#2c2a5e",
+                        "primary-fixed": "#e3dfff",
+                        "inverse-surface": "#dbe2fd",
+                        "secondary-fixed-dim": "#4ad8f0",
+                        "surface-dim": "#0b1326",
+                        "on-secondary-container": "#00424c",
+                        "on-primary-container": "#4e4c83",
+                        "tertiary": "#efdaff",
+                        "surface-container-highest": "#2d3449",
+                        "surface-tint": "#c3c0ff",
+                        "primary": "#e2dfff",
+                        "error": "#ffb4ab",
+                        "surface-variant": "#2d3449",
+                        "soft-purple-glow": "rgba(221, 184, 255, 0.4)",
+                        "on-primary-fixed": "#161349",
+                        "surface-container-lowest": "#060d20",
+                        "on-tertiary": "#40215d",
+                        "secondary-fixed": "#a2eeff",
+                        "on-error-container": "#ffdad6",
+                        "neon-cyan-glow": "rgba(93, 230, 255, 0.4)",
+                        "surface-container": "#171f33",
+                        "secondary": "#4ad8f0",
+                        "inverse-on-surface": "#283044",
+                        "on-error": "#690005",
+                        "on-secondary": "#00363e",
+                        "on-surface": "#dbe2fd",
+                        "inverse-primary": "#5a5890",
+                        "outline-variant": "#47464f",
+                        "on-primary-fixed-variant": "#434176",
+                        "on-tertiary-container": "#634482",
+                        "tertiary-fixed": "#f0dbff",
+                        "secondary-container": "#00b6ce",
+                        "on-surface-variant": "#c8c5d0",
+                        "surface-container-high": "#222a3e",
+                        "surface": "#0b1326",
+                        "on-tertiary-fixed": "#290947",
+                        "outline": "#928f9a",
+                        "on-background": "#dbe2fd",
+                        "on-secondary-fixed": "#001f25",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "primary-container": "#c3c0ff",
+                        "background": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "unit": "4px",
+                        "margin-mobile": "20px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["geist"],
+                        "body-sm": ["geist"],
+                        "mono-code": ["jetbrainsMono"],
+                        "label-caps": ["jetbrainsMono"],
+                        "body-lg": ["geist"],
+                        "headline-md": ["geist"],
+                        "headline-lg-mobile": ["geist"],
+                        "display": ["geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "mono-code": ["14px", {"lineHeight": "1.6", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.15em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "display": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "900"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dbe2fd;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(19, 27, 46, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 15px rgba(93, 230, 255, 0.3);
+        }
+        .neon-text-cyan {
+            text-shadow: 0 0 8px rgba(93, 230, 255, 0.6);
+        }
+        .terminal-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #4ad8f0;
+        }
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .scanline::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(93, 230, 255, 0.05), transparent);
+            animation: scanline 8s linear infinite;
+            pointer-events: none;
+        }
+        .hologram-flicker {
+            animation: flicker 2s infinite;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+            52% { opacity: 1; }
+            54% { opacity: 0.9; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="selection:bg-secondary selection:text-on-secondary">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface-overlay backdrop-blur-xl border-b border-glass-border shadow-[0_0_20px_rgba(93,230,255,0.1)]">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-headline-md text-headline-md font-black text-transparent bg-clip-text bg-gradient-to-r from-secondary to-tertiary-fixed-dim tracking-tighter">GHAZY.DEV</span>
+</div>
+<button class="text-secondary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 space-y-32">
+<!-- Hero Section -->
+<section class="px-6 flex flex-col items-center text-center">
+<div class="relative mb-8">
+<div class="absolute inset-0 bg-secondary blur-3xl opacity-10 rounded-full"></div>
+<div class="relative w-32 h-32 rounded-full border-2 border-secondary p-1">
+<img alt="Ghazy Al Muhalla" class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="A futuristic professional portrait of a young male web developer with short dark hair, wearing a sleek black technical jacket. The lighting is dominated by cinematic cyan and purple neon glows reflecting off his face. The background is a blurred dark laboratory or high-tech server room with soft atmospheric particles, creating a high-end digital luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACHLmZUy0b8k53SpMlfMARPIYsq2Gk7bvRVyD_2nV8y3Z87PK3L2RCwTqL--_Uzo656d7BqSQ2-inWZe7zLXGwf6byY-YoySPTS0tVkfZ9jK3FEFntjYhwJuAkTBmrqH1AjstKtJSqDB8_vEmwUKxuRvIYM0aN5NNOFB7yo85deW8c0Rm4HuT_qe0WXweaYYCXYvdf8RWhAnypSN5r6s2KSic5KjuvXkXj6Fy6GsQ3pDDQIXDxh9VJWWiBaBfofzsLhOHTuh4px_g"/>
+</div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-transparent bg-clip-text bg-gradient-to-br from-white via-secondary to-tertiary-fixed-dim mb-4 leading-tight">
+                Membangun Generasi, Menciptakan Warisan
+            </h1>
+<p class="font-mono-code text-on-surface-variant max-w-xs mx-auto mb-8">
+                &lt;Junior Web Developer &amp; Designer /&gt;
+            </p>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-lg font-bold flex items-center gap-2 hover:scale-105 transition-transform neon-glow-cyan">
+<span>Hubungi Saya</span>
+<span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</section>
+<!-- Stats Bento Grid -->
+<section class="px-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between aspect-square border-l-2 border-l-secondary">
+<span class="material-symbols-outlined text-secondary opacity-50">cake</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Usia</p>
+<p class="font-headline-md text-headline-md text-secondary">19</p>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-secondary opacity-50">location_on</span>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Lokasi</p>
+<p class="font-headline-md text-headline-md text-on-surface">Deli Serdang</p>
+</div>
+</div>
+<div class="col-span-2 glass-card p-6 rounded-xl flex items-center justify-between">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">Fokus Utama</p>
+<p class="font-headline-md text-headline-md text-tertiary">Web Development</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-tertiary opacity-30">code_blocks</span>
+</div>
+<div class="col-span-2 glass-card p-4 rounded-xl flex items-center gap-4 bg-secondary/10">
+<div class="w-3 h-3 bg-secondary rounded-full animate-pulse shadow-[0_0_10px_#4ad8f0]"></div>
+<p class="font-mono-code text-secondary text-sm tracking-widest">STATUS: READY FOR PROJECT</p>
+</div>
+</div>
+</section>
+<!-- Cyber-ID Card -->
+<section class="px-6">
+<h2 class="font-mono-code text-label-caps text-secondary mb-6 flex items-center gap-2">
+<span class="w-8 h-[1px] bg-secondary"></span> IDENTIFICATION
+            </h2>
+<div class="glass-card rounded-xl p-8 relative overflow-hidden scanline hologram-flicker">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-secondary opacity-20 text-6xl">qr_code_2</span>
+</div>
+<div class="space-y-6 relative z-10">
+<div class="border-b border-glass-border pb-4">
+<p class="font-label-caps text-label-caps text-secondary">SUBJECT NAME</p>
+<p class="font-headline-md text-headline-md uppercase tracking-tight">Ghazy Al Muhalla</p>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">BIO PROTOCOL</p>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed italic">
+                            "Mendedikasikan diri untuk merancang antarmuka digital yang tidak hanya fungsional tetapi juga memberikan pengalaman visual yang mendalam. Menggabungkan presisi kode dengan estetika modern."
+                        </p>
+</div>
+<div class="flex justify-between items-end">
+<div class="font-mono-code text-[10px] text-on-surface-variant">
+<p>SEC_ID: GZY-2024-X1</p>
+<p>ACCESS: GRANTED</p>
+</div>
+<img alt="ID Thumbnail" class="w-12 h-12 rounded border border-secondary p-1 opacity-50" data-alt="A detailed macro view of a high-tech identification badge with holographic elements and micro-circuitry patterns. The badge shows a small digital display with blue flickering light. The aesthetic is clean cyber-minimalism with deep midnight backgrounds and cyan accents, conveying a sense of digital security and elite membership." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEkjGmlvdkAAX-5g-_8pBev9HLXdfVWMEQUYM9vzZrZej8MQom0ighFh3mF746OnwtPp9e-a5bDCtfagzVRrdQFgRmwbm21Kevuc8igJ83-HpTrSZMv8LJeQLK3cFfrze-g8_A7-G2Gq5MRIeixEYBIubfSzidht9DoxZCI6U9q7iqOOOnDPT2b5js6_y20UOdHu33CPQIA1ImX08MsZ0q9Ezeq18_9ypHrbjpkCyUvMeWsf9wL5yT7_9dV2pXlp42cwaPyj4ZY-Y"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Terminal -->
+<section class="px-6">
+<div class="bg-[#060d20] rounded-lg border border-secondary/30 overflow-hidden shadow-2xl">
+<div class="bg-surface-container-high px-4 py-2 flex items-center justify-between">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-secondary/50"></div>
+</div>
+<span class="font-mono-code text-[10px] text-on-surface-variant">bash — 80x24</span>
+</div>
+<div class="p-4 h-64 font-mono-code text-sm terminal-scroll overflow-y-auto text-secondary" id="terminal-body">
+<div class="mb-2">GHAZY OS v1.0.4 - Welcome, guest.</div>
+<div class="mb-4 text-on-surface-variant">Type 'help' to see available commands.</div>
+<div id="terminal-output"></div>
+<div class="flex items-center gap-2">
+<span class="text-tertiary">visitor@ghazy:~$</span>
+<input autocomplete="off" autofocus="" class="bg-transparent border-none focus:ring-0 p-0 text-secondary w-full" id="terminal-input" type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Progress -->
+<section class="px-6">
+<h2 class="font-mono-code text-label-caps text-secondary mb-8 text-center">CORE ARCHITECTURE</h2>
+<div class="space-y-8">
+<div class="skill-item">
+<div class="flex justify-between items-end mb-2">
+<span class="font-mono-code text-on-surface">HTML/Web Structuring</span>
+<span class="font-mono-code text-secondary text-xs">95%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[95%] neon-glow-cyan"></div>
+</div>
+</div>
+<div class="skill-item">
+<div class="flex justify-between items-end mb-2">
+<span class="font-mono-code text-on-surface">Tailwind CSS/Styling</span>
+<span class="font-mono-code text-secondary text-xs">90%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[90%] neon-glow-cyan"></div>
+</div>
+</div>
+<div class="skill-item">
+<div class="flex justify-between items-end mb-2">
+<span class="font-mono-code text-on-surface">JavaScript/Logic</span>
+<span class="font-mono-code text-secondary text-xs">75%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[75%] neon-glow-cyan"></div>
+</div>
+</div>
+<div class="skill-item">
+<div class="flex justify-between items-end mb-2">
+<span class="font-mono-code text-on-surface">UI/UX Design</span>
+<span class="font-mono-code text-secondary text-xs">85%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[85%] neon-glow-cyan"></div>
+</div>
+</div>
+<div class="skill-item">
+<div class="flex justify-between items-end mb-2">
+<span class="font-mono-code text-on-surface">Digital Poster Design</span>
+<span class="font-mono-code text-secondary text-xs">80%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[80%] neon-glow-cyan"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Timeline -->
+<section class="px-6">
+<h2 class="font-mono-code text-label-caps text-secondary mb-10 text-center">CHRONOLOGY</h2>
+<div class="relative ml-4 space-y-12">
+<div class="absolute left-0 top-0 w-[1px] h-full bg-gradient-to-b from-secondary via-secondary/20 to-transparent"></div>
+<div class="relative pl-8">
+<div class="absolute left-[-4px] top-1 w-2 h-2 rounded-full bg-secondary neon-glow-cyan"></div>
+<p class="font-label-caps text-[10px] text-secondary mb-1">2023 - PRESENT</p>
+<h3 class="font-headline-md text-lg text-on-surface font-bold">Freelance Web Developer</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Membangun landing page dan solusi web untuk UMKM lokal dengan fokus pada performa dan SEO.</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-[-4px] top-1 w-2 h-2 rounded-full bg-secondary/50"></div>
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-1">2022 - 2023</p>
+<h3 class="font-headline-md text-lg text-on-surface font-bold">Digital Design Student</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-2">Mendalami fundamental desain grafis, tipografi, dan komposisi visual untuk media digital.</p>
+</div>
+</div>
+</section>
+<!-- Projects Grid -->
+<section class="px-6">
+<div class="flex flex-col gap-6 mb-8">
+<h2 class="font-headline-md text-headline-md text-on-surface">Selected Works</h2>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full border border-secondary bg-secondary text-on-secondary font-mono-code text-xs">All</button>
+<button class="px-4 py-1.5 rounded-full border border-glass-border text-on-surface-variant font-mono-code text-xs">Web</button>
+<button class="px-4 py-1.5 rounded-full border border-glass-border text-on-surface-variant font-mono-code text-xs">Poster</button>
+</div>
+</div>
+<div class="space-y-6">
+<!-- Project 1 -->
+<div class="group relative rounded-xl overflow-hidden glass-card">
+<div class="h-48 overflow-hidden">
+<img alt="Website Sekolah" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sleek, modern high school website interface displayed on a laptop screen. The design is clean with plenty of white space, a navy blue and white color scheme, and sharp photography of students in a laboratory. The laptop is placed on a minimalist desk with soft ambient lighting, fitting the cyber-minimalist portfolio vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnchuNeZPyvFrKR_3MN0qA2uQpcbbOct4XceeIR7GrP2seK-G6RXp20bHbkYGdHVUU0W4iZH907akNE_ZKCVqOfDJ_cXEsf-Y8D342ABoAcHPVGy18riWa0uG9t-VpmG0wQ6rEMUNd4FTbD8TxwjX0kCrxmsCabQNJ9ddk5_fuXZEKq4MIrgX0r43k2YiHRN1NL8cj9IqCV_C2fJ-UA7hXHTwlkS8FB7NVPBHT0D2KwNcd-pMmQ6-OlI-oWnx7uHvnNt4hPen77PY"/>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-lg font-bold">Smart School Portal</h3>
+<span class="font-label-caps text-[10px] bg-secondary/10 text-secondary px-2 py-0.5 rounded">WEB</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mb-4">Sistem manajemen informasi sekolah berbasis web yang terintegrasi.</p>
+<a class="text-secondary font-mono-code text-xs flex items-center gap-1" href="#">VIEW PROJECT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group relative rounded-xl overflow-hidden glass-card">
+<div class="h-48 overflow-hidden">
+<img alt="Website UMKM" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A vibrant and modern e-commerce website for a local small business, featuring high-quality product photos of organic skincare. The UI uses soft pastels and elegant serif typography, creating a premium artisan feel. The website is shown on a smartphone held by a hand, set against a dark atmospheric background with neon highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNd4Ys3Eg8TSxsG4vC2pfzF1Nk8zEXmVTgwgascKxHWeXt9xPCpNaOWtkG-oED8m4mX-aHj72i2XfDFBPqXcPaUN9QHwQL7ZZf0OdZz2OUQpEQCGeNwudpEPfV1TsfcZMBjElj7t1ljyUes1EqJa4mA7DZv4772coqVS5HPdIiZQz6PeqZbwqO6HtrL5PDDyW9Bc_RBNoti5c8_ZbdnAvG49XZyuo1Bvn-78I3Y929r160UjVWZjN4JgMM1rhSLdV9MnF_w7-QXHA"/>
+</div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-lg font-bold">UMKM Digital Hub</h3>
+<span class="font-label-caps text-[10px] bg-secondary/10 text-secondary px-2 py-0.5 rounded">WEB</span>
+</div>
+<p class="font-body-sm text-on-surface-variant mb-4">Digitalisasi katalog produk dan pemesanan online untuk usaha lokal.</p>
+<a class="text-secondary font-mono-code text-xs flex items-center gap-1" href="#">VIEW PROJECT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Form -->
+<section class="px-6" id="contact">
+<h2 class="font-headline-md text-headline-md text-center mb-8">Establish Connection</h2>
+<div class="glass-card rounded-xl p-6 space-y-6">
+<div class="space-y-4">
+<div>
+<label class="font-mono-code text-xs text-on-surface-variant block mb-2 uppercase">Subject Name</label>
+<input class="w-full bg-surface-container-highest/30 border-b border-glass-border focus:border-secondary transition-colors py-3 px-0 text-on-surface outline-none" placeholder="Enter your name" type="text"/>
+</div>
+<div>
+<label class="font-mono-code text-xs text-on-surface-variant block mb-2 uppercase">Return Address (Email)</label>
+<input class="w-full bg-surface-container-highest/30 border-b border-glass-border focus:border-secondary transition-colors py-3 px-0 text-on-surface outline-none" placeholder="email@example.com" type="email"/>
+</div>
+<div>
+<label class="font-mono-code text-xs text-on-surface-variant block mb-2 uppercase">Encrypted Message</label>
+<textarea class="w-full bg-surface-container-highest/30 border-b border-glass-border focus:border-secondary transition-colors py-3 px-0 text-on-surface outline-none resize-none" placeholder="Your message here..." rows="4"></textarea>
+</div>
+</div>
+<button class="w-full bg-secondary text-on-secondary py-4 rounded font-bold uppercase tracking-widest hover:bg-secondary-container transition-colors neon-glow-cyan">
+                    Initialize Transmission
+                </button>
+</div>
+<div class="mt-12 grid grid-cols-1 gap-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-secondary/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">EMAIL</p>
+<p class="font-mono-code text-sm">hello@ghazy.dev</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-secondary/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">chat</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">WHATSAPP</p>
+<p class="font-mono-code text-sm">+62 812-XXXX-XXXX</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-secondary/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant">OPERATING BASE</p>
+<p class="font-mono-code text-sm">Deli Serdang, Indonesia</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-dim border-t border-glass-border py-12 px-6">
+<div class="flex flex-col items-center gap-8">
+<span class="font-headline-md text-secondary font-bold">GHAZY.DEV</span>
+<div class="flex gap-6">
+<a class="text-on-surface-variant hover:text-tertiary transition-colors underline underline-offset-4 font-mono-code text-[12px]" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors underline underline-offset-4 font-mono-code text-[12px]" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors underline underline-offset-4 font-mono-code text-[12px]" href="#">Dribbble</a>
+</div>
+<p class="font-mono-code text-label-caps text-on-surface-variant text-center opacity-50">
+                © 2024 GHAZY.DEV — BUILT WITH PRECISION
+            </p>
+</div>
+</footer>
+<!-- Bottom Nav Bar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface-container-low/80 backdrop-blur-lg border-t border-glass-border shadow-[0_-4px_24px_rgba(0,0,0,0.5)] md:hidden z-50">
+<div class="flex justify-around items-center py-3 px-4">
+<a class="flex flex-col items-center justify-center text-secondary scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-[10px] mt-1 uppercase">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-tertiary" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-label-caps text-[10px] mt-1 uppercase">Skills</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-tertiary" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-caps text-[10px] mt-1 uppercase">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-tertiary" href="#contact">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-caps text-[10px] mt-1 uppercase">Contact</span>
+</a>
+</div>
+</nav>
+<script>
+        // Interactive Terminal Script
+        const terminalInput = document.getElementById('terminal-input');
+        const terminalOutput = document.getElementById('terminal-output');
+        const terminalBody = document.getElementById('terminal-body');
+
+        const commands = {
+            'help': 'Available commands: about, skills, clear, help',
+            'about': 'Ghazy Al Muhalla. 19 y/o Junior Dev. Building digital legacies from Deli Serdang.',
+            'skills': 'Languages: HTML, CSS, JS. Design: UI/UX, Posters. Tools: Tailwind, Git.',
+            'clear': 'CLEAR'
+        };
+
+        terminalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const command = terminalInput.value.toLowerCase().trim();
+                const outputLine = document.createElement('div');
+                outputLine.className = 'mb-2';
+                
+                if (command === 'clear') {
+                    terminalOutput.innerHTML = '';
+                } else if (commands[command]) {
+                    outputLine.innerHTML = `<span class="text-tertiary">visitor@ghazy:~$</span> ${command}<br><span class="text-on-surface">${commands[command]}</span>`;
+                    terminalOutput.appendChild(outputLine);
+                } else if (command !== '') {
+                    outputLine.innerHTML = `<span class="text-tertiary">visitor@ghazy:~$</span> ${command}<br><span class="text-error">Command not found. Type 'help' for assistance.</span>`;
+                    terminalOutput.appendChild(outputLine);
+                }
+                
+                terminalInput.value = '';
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        });
+
+        // Click focus terminal
+        terminalBody.addEventListener('click', () => terminalInput.focus());
+    </script>
+</body></html>
