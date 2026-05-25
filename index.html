@@ -116,7 +116,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .tilt{transform-style:preserve-3d;transition:transform .12s;}
 
 /* ── PROJECT CARD ── */
-.proj-card{transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;}
+.proj-card{transition:transform .35s cubic-bezier(.23,1,.32,1),opacity .35s,box-shadow .35s;}
 .proj-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 40px rgba(74,216,240,.07);}
 .proj-img img{transition:transform .7s cubic-bezier(.23,1,.32,1),filter .35s;filter:grayscale(25%);}
 .proj-card:hover .proj-img img{transform:scale(1.09);filter:grayscale(0);}
@@ -238,7 +238,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
       <!-- Photo -->
       <div class="absolute inset-3 rounded-full border border-secondary/35 p-1 overflow-hidden">
         <img alt="Ghazy" class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuACHLmZUy0b8k53SpMlfMARPIYsq2Gk7bvRVyD_2nV8y3Z87PK3L2RCwTqL--_Uzo656d7BqSQ2-inWZe7zLXGwf6byY-YoySPTS0tVkfZ9jK3FEFntjYhwJuAkTBmrqH1AjstKtJSqDB8_vEmwUKxuRvIYM0aN5NNOFB7yo85deW8c0Rm4HuT_qe0WXweaYYCXYvdf8RWhAnypSN5r6s2KSic5KjuvXkXj6Fy6GsQ3pDDQIXDxh9VJWWiBaBfofzsLhOHTuh4px_g"/>
+          src="./profile.jpg"/>
       </div>
       <!-- Online badge -->
       <div class="absolute -bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-container-low/90 border border-secondary/30 rounded-full px-2.5 py-1 backdrop-blur-sm">
@@ -292,7 +292,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
   <div class="s-div mx-6"></div>
 
   <!-- ── MARQUEE SKILLS ── -->
-  <section class="overflow-hidden reveal" style="mask:linear-gradient(90deg,transparent,black 15%,black 85%,transparent);">
+  <section class="overflow-hidden reveal" style="mask:linear-gradient(90deg,transparent,black 15%,black 85%,transparent); -webkit-mask:linear-gradient(90deg,transparent,black 15%,black 85%,transparent);">
     <div class="marquee-inner py-2">
       <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">HTML</span><span class="text-secondary/30 mx-2">◆</span>
       <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">CSS</span><span class="text-secondary/30 mx-2">◆</span>
@@ -380,7 +380,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
             <p>ACCESS: <span class="text-green-400">GRANTED</span></p>
           </div>
           <img alt="ID" class="w-12 h-12 rounded border border-secondary/30 p-1 opacity-40"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEkjGmlvdkAAX-5g-_8pBev9HLXdfVWMEQUYM9vzZrZej8MQom0ighFh3mF746OnwtPp9e-a5bDCtfagzVRrdQFgRmwbm21Kevuc8igJ83-HpTrSZMv8LJeQLK3cFfrze-g8_A7-G2Gq5MRIeixEYBIubfSzidht9DoxZCI6U9q7iqOOOnDPT2b5js6_y20UOdHu33CPQIA1ImX08MsZ0q9Ezeq18_9ypHrbjpkCyUvMeWsf9wL5yT7_9dV2pXlp42cwaPyj4ZY-Y"/>
+            src="./profile.jpg"/>
         </div>
       </div>
     </div>
@@ -570,17 +570,17 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
     <div class="glass-card-cyan rounded-xl p-6 space-y-5 reveal d2">
       <div>
         <label class="font-mono text-[10px] text-on-surface-variant block mb-2 tracking-widest">SUBJECT NAME</label>
-        <input class="c-input" placeholder="Enter your name" type="text"/>
+        <input id="contact-name" class="c-input" placeholder="Enter your name" type="text"/>
       </div>
       <div>
         <label class="font-mono text-[10px] text-on-surface-variant block mb-2 tracking-widest">RETURN ADDRESS</label>
-        <input class="c-input" placeholder="email@example.com" type="email"/>
+        <input id="contact-email" class="c-input" placeholder="email@example.com" type="email"/>
       </div>
       <div>
         <label class="font-mono text-[10px] text-on-surface-variant block mb-2 tracking-widest">ENCRYPTED MESSAGE</label>
-        <textarea class="c-input resize-none" placeholder="Your message here..." rows="4"></textarea>
+        <textarea id="contact-message" class="c-input resize-none" placeholder="Your message here..." rows="4"></textarea>
       </div>
-      <button class="mag-btn w-full bg-secondary text-on-secondary py-3 rounded-lg font-bold font-mono text-xs tracking-widest uppercase neon-glow flex items-center justify-center gap-2">
+      <button id="send-btn" class="mag-btn w-full bg-secondary text-on-secondary py-3 rounded-lg font-bold font-mono text-xs tracking-widest uppercase neon-glow flex items-center justify-center gap-2">
         <span class="material-symbols-outlined text-base">send</span>
         Initialize Transmission
       </button>
@@ -592,7 +592,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opa
           <p class="font-mono text-[10px] text-on-surface-variant tracking-widest">EMAIL</p>
           <p class="font-mono text-sm text-on-surface">hello@ghazy.dev</p>
         </div>
-        <span class="material-symbols-outlined ml-auto text-on-surface-variant/30 hover:text-secondary transition-colors cursor-pointer" style="font-size:16px;">content_copy</span>
+        <span id="copy-email-btn" class="material-symbols-outlined ml-auto text-on-surface-variant/30 hover:text-secondary transition-colors cursor-pointer" style="font-size:16px;">content_copy</span>
       </div>
       <div class="flex items-center gap-4 glass-card p-4 rounded-xl glow-hover">
         <div class="w-9 h-9 rounded-full border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></div>
@@ -821,119 +821,141 @@ const termBody = document.getElementById('term-body');
 const cmds = {
   'help': `<span style="color:#ddb8ff">Available:</span> <span style="color:#4ad8f0">about</span>, <span style="color:#4ad8f0">skills</span>, <span style="color:#4ad8f0">contact</span>, <span style="color:#4ad8f0">projects</span>, <span style="color:#4ad8f0">clear</span>, <span style="color:#4ad8f0">whoami</span>, <span style="color:#4ad8f0">date</span>`,
   'about': `<span style="color:#dbe2fd">Ghazy Al Muhalla — 19 y/o Junior Dev.<br>Building digital legacies from Deli Serdang, Indonesia.</span>`,
-  'skills': `<span style="color:#dbe2fd">HTML <span style="color:#4ad8f0">95%</span> | Tailwind <span style="color:#4ad8f0">90%</span> | UI/UX <span style="color:#4ad8f0">85%</span> | JS <span style="color:#4ad8f0">75%</span></span>`,
-  'contact': `<span style="color:#dbe2fd">Email: <span style="color:#4ad8f0">hello@ghazy.dev</span><br>WA: <span style="color:#4ad8f0">+62 812-XXXX-XXXX</span></span>`,
-  'projects': `<span style="color:#dbe2fd">1. Smart School Portal — <span style="color:#4ad8f0">Web</span><br>2. UMKM Digital Hub — <span style="color:#4ad8f0">Web</span></span>`,
-  'whoami': `<span style="color:#4ad8f0">visitor</span> — <span style="color:#dbe2fd">guest access granted ✓</span>`,
-  'date': `<span style="color:#dbe2fd">${new Date().toLocaleDateString('id-ID',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</span>`,
-  'clear': 'CLEAR'
+  'skills': `<span style="color:#4ad8f0">Core Architecture Skills:</span><br>
+             - HTML/Web Structuring: <span style="color:#ddb8ff">95%</span><br>
+             - Tailwind CSS/Styling: <span style="color:#ddb8ff">90%</span><br>
+             - UI/UX Design: <span style="color:#ddb8ff">85%</span><br>
+             - Digital Poster Design: <span style="color:#ddb8ff">80%</span><br>
+             - JavaScript/Logic: <span style="color:#ddb8ff">75%</span>`,
+  'contact': `<span style="color:#4ad8f0">Establish Connection:</span><br>
+              - Email: <span style="color:#ddb8ff">hello@ghazy.dev</span><br>
+              - WhatsApp: <span style="color:#ddb8ff">+62 812-XXXX-XXXX</span><br>
+              - Base: <span style="color:#ddb8ff">Deli Serdang, Indonesia</span>`,
+  'projects': `<span style="color:#4ad8f0">Selected Works:</span><br>
+               1. <span style="color:#ddb8ff">Smart School Portal</span>: Integrated school management web system.<br>
+               2. <span style="color:#ddb8ff">UMKM Digital Hub</span>: Local business catalog and online order platform.`,
+  'whoami': `<span style="color:#dbe2fd">guest@ghazy.dev — Cyber Space Voyager. Access: GRANTED.</span>`,
+  'date': `<span style="color:#dbe2fd">${new Date().toString()}</span>`
 };
-function typeOutput(container, html, speed=12) {
-  const temp = document.createElement('div'); temp.innerHTML = html;
-  const text = temp.textContent;
-  let i = 0;
-  container.innerHTML = '';
-  const iv = setInterval(() => {
-    if(i >= text.length) { container.innerHTML = html; clearInterval(iv); return; }
-    container.textContent = text.slice(0,++i);
-  }, speed);
-}
+
+termBody.addEventListener('click', () => {
+  termIn.focus();
+});
+
 termIn.addEventListener('keydown', e => {
-  if(e.key === 'Enter') {
-    const cmd = termIn.value.toLowerCase().trim();
-    const line = document.createElement('div'); line.className='mb-2';
-    if(cmd === 'clear') { termOut.innerHTML=''; }
-    else if(cmds[cmd]) {
-      const outDiv = document.createElement('div');
-      line.innerHTML = `<span style="color:#ddb8ff">visitor@ghazy</span><span style="opacity:.5">:</span><span style="color:#4ad8f0">~</span><span style="opacity:.5">$</span> ${cmd}`;
-      termOut.appendChild(line);
-      termOut.appendChild(outDiv);
-      typeOutput(outDiv, cmds[cmd]);
-    } else if(cmd !== '') {
-      line.innerHTML = `<span style="color:#ddb8ff">visitor@ghazy</span><span style="opacity:.5">:</span><span style="color:#4ad8f0">~</span><span style="opacity:.5">$</span> ${cmd}<br><span style="color:#ffb4ab">bash: ${cmd}: command not found. Type 'help'.</span>`;
-      termOut.appendChild(line);
+  if (e.key === 'Enter') {
+    const input = termIn.value.trim();
+    const cmd = input.toLowerCase();
+    let reply = '';
+    
+    if (input) {
+      if (cmd === 'clear') {
+        termOut.innerHTML = '';
+      } else if (cmds[cmd]) {
+        reply = cmds[cmd];
+      } else {
+        reply = `<span style="color:#ffb4ab">Command not found: '${input}'. Type 'help' for available commands.</span>`;
+      }
+      
+      if (cmd !== 'clear') {
+        const promptLine = `<div class="mt-1"><span class="text-tertiary-fixed-dim">visitor@ghazy</span><span class="text-on-surface-variant">:</span><span class="text-secondary">~</span><span class="text-on-surface-variant">$&nbsp;</span>${input}</div>`;
+        termOut.innerHTML += promptLine + `<div>${reply}</div>`;
+      }
+    } else {
+      termOut.innerHTML += `<div><span class="text-tertiary-fixed-dim">visitor@ghazy</span><span class="text-on-surface-variant">:</span><span class="text-secondary">~</span><span class="text-on-surface-variant">$&nbsp;</span></div>`;
     }
-    termIn.value='';
+    
+    termIn.value = '';
     termBody.scrollTop = termBody.scrollHeight;
   }
-  if(e.key === 'Tab') {
-    e.preventDefault();
-    const v = termIn.value.toLowerCase();
-    const m = Object.keys(cmds).find(k => k.startsWith(v));
-    if(m) termIn.value=m;
-  }
 });
-termBody.addEventListener('click', () => termIn.focus());
 
 // ── PROJECT FILTER ──
-document.querySelectorAll('.filter-btn').forEach(btn => {
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projCards = document.querySelectorAll('.proj-card');
+
+filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.remove('border-secondary','bg-secondary/10','text-secondary');
-      b.classList.add('border-glass-border','text-on-surface-variant');
+    filterBtns.forEach(b => {
+      b.classList.remove('active', 'border-secondary', 'bg-secondary/10', 'text-secondary');
+      b.classList.add('border-glass-border', 'text-on-surface-variant');
     });
-    btn.classList.add('border-secondary','bg-secondary/10','text-secondary');
-    btn.classList.remove('border-glass-border','text-on-surface-variant');
-    const f = btn.dataset.f;
-    document.querySelectorAll('#proj-grid [data-cat]').forEach(c => {
-      c.style.display = (f==='all'||c.dataset.cat===f) ? '' : 'none';
+    btn.classList.add('active', 'border-secondary', 'bg-secondary/10', 'text-secondary');
+    btn.classList.remove('border-glass-border', 'text-on-surface-variant');
+
+    const filter = btn.dataset.f;
+    projCards.forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.style.display = 'block';
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 10);
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(12px)';
+        setTimeout(() => {
+          card.style.display = 'none';
+        }, 350);
+      }
     });
   });
 });
 
-// ── TEXT SCRAMBLE on hover for heading ──
-const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&';
-function scramble(el, original) {
-  let iter = 0;
-  const maxIter = original.length * 2;
-  const iv = setInterval(() => {
-    el.textContent = original.split('').map((c, i) => {
-      if(c === ' ') return ' ';
-      if(i < iter/2) return c;
-      return scrambleChars[Math.floor(Math.random()*scrambleChars.length)];
-    }).join('');
-    if(iter++ >= maxIter) { el.textContent = original; clearInterval(iv); }
-  }, 40);
+// ── COPY EMAIL ──
+const copyBtn = document.getElementById('copy-email-btn');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    const email = 'hello@ghazy.dev';
+    navigator.clipboard.writeText(email).then(() => {
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = 'check';
+      copyBtn.style.color = '#4ad8f0';
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+        copyBtn.style.color = '';
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  });
 }
-document.querySelectorAll('h3.font-display').forEach(h => {
-  const orig = h.textContent;
-  h.addEventListener('mouseenter', () => scramble(h, orig));
-});
 
-// ── SCROLL PROGRESS BAR ──
-const progBar = document.createElement('div');
-progBar.style.cssText = 'position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#4ad8f0,#ddb8ff);z-index:9999;transition:width .1s;box-shadow:0 0 8px rgba(74,216,240,.6);';
-document.body.appendChild(progBar);
-window.addEventListener('scroll', () => {
-  const pct2 = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  progBar.style.width = pct2 + '%';
-});
+// ── FORM TRANSMISSION ──
+const sendBtn = document.getElementById('send-btn');
+if (sendBtn) {
+  sendBtn.addEventListener('click', () => {
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+    
+    if (!name || !email || !message) {
+      alert('Semua bidang harus diisi untuk menginisialisasi transmisi.');
+      return;
+    }
 
-// ── BOTTOM NAV ACTIVE ──
-const secs = document.querySelectorAll('main section[id]');
-window.addEventListener('scroll', () => {
-  let cur3 = '';
-  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 130) cur3 = s.id; });
-  document.querySelectorAll('.bnav').forEach(item => {
-    item.classList.toggle('text-secondary', item.getAttribute('href') === '#' + cur3);
-    item.classList.toggle('text-on-surface-variant/50', item.getAttribute('href') !== '#' + cur3);
+    const originalText = sendBtn.innerHTML;
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = `<span class="material-symbols-outlined text-base animate-spin">sync</span> TRANSMITTING...`;
+
+    setTimeout(() => {
+      sendBtn.innerHTML = `<span class="material-symbols-outlined text-base">done_all</span> TRANSMISSION SUCCESSFUL`;
+      sendBtn.style.background = '#ddb8ff';
+      sendBtn.style.color = '#0b1326';
+      
+      document.getElementById('contact-name').value = '';
+      document.getElementById('contact-email').value = '';
+      document.getElementById('contact-message').value = '';
+
+      setTimeout(() => {
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = originalText;
+        sendBtn.style.background = '';
+        sendBtn.style.color = '';
+      }, 3000);
+    }, 1500);
   });
-});
-
-// ── RIPPLE on buttons ──
-document.querySelectorAll('.mag-btn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    const r = btn.getBoundingClientRect();
-    const rpl = document.createElement('span');
-    const size = Math.max(r.width, r.height);
-    rpl.style.cssText = `position:absolute;width:${size}px;height:${size}px;left:${e.clientX-r.left-size/2}px;top:${e.clientY-r.top-size/2}px;background:rgba(255,255,255,.2);border-radius:50%;transform:scale(0);animation:ripple .5s ease-out forwards;pointer-events:none;`;
-    btn.appendChild(rpl);
-    setTimeout(() => rpl.remove(), 600);
-  });
-});
-const rplStyle = document.createElement('style');
-rplStyle.textContent = '@keyframes ripple{to{transform:scale(2.5);opacity:0;}}';
-document.head.appendChild(rplStyle);
+}
 </script>
 </body>
 </html>
