@@ -1,1029 +1,380 @@
 <!DOCTYPE html>
-<html class="dark" lang="id">
+<html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>GHAZY.DEV | Cyber-Minimalist Portfolio</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Geist:wght@100;300;400;700;900&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode:"class",
-    theme:{extend:{colors:{"tertiary-container":"#dcb7fe","tertiary-fixed-dim":"#ddb8ff","surface-container-low":"#131b2e","glass-border":"rgba(255,255,255,0.1)","surface-overlay":"rgba(11,19,38,0.6)","surface-dim":"#0b1326","tertiary":"#efdaff","surface-container-highest":"#2d3449","error":"#ffb4ab","secondary":"#4ad8f0","on-secondary":"#00363e","on-surface":"#dbe2fd","secondary-container":"#00b6ce","on-surface-variant":"#c8c5d0","surface-container-high":"#222a3e","surface":"#0b1326","outline":"#928f9a","on-background":"#dbe2fd","error-container":"#93000a","background":"#0b1326"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},fontFamily:{"mono-code":["JetBrains Mono","monospace"],"display":["Geist","sans-serif"]}}}
-  }
-</script>
-<style>
-*,*::before,*::after{box-sizing:border-box;}
-:root{--cyan:#4ad8f0;--purple:#ddb8ff;--bg:#0b1326;--s:#131b2e;--sh:#222a3e;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:#dbe2fd;font-family:'Geist',sans-serif;overflow-x:hidden;cursor:none;min-height:100dvh;}
-.font-mono{font-family:'JetBrains Mono',monospace;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Studio | Photography Landing Page</title>
+    <meta name="description" content="Premium photography studio capturing timeless moments.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --bg-color: #050505;
+          --text-primary: #ffffff;
+          --text-secondary: #a0a0a0;
+          --accent: #d4af37; /* Gold accent */
+          --nav-bg: rgba(5, 5, 5, 0.7);
+        }
 
-/* ── CURSOR ── */
-#cur{position:fixed;width:8px;height:8px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .15s,height .15s;}
-#cur-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(74,216,240,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s,border-color .3s;}
-#cur-trail{position:fixed;pointer-events:none;z-index:9997;}
-body:has(a:hover) #cur,body:has(button:hover) #cur{width:20px;height:20px;}
-body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:56px;height:56px;border-color:rgba(221,184,255,.5);opacity:.4;}
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
 
-/* ── NOISE ── */
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:100px;}
+        body {
+          background-color: var(--bg-color);
+          color: var(--text-primary);
+          font-family: 'Inter', sans-serif;
+          line-height: 1.6;
+          overflow-x: hidden;
+          scroll-behavior: smooth;
+        }
 
-/* ── GRID BG ── */
-.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(74,216,240,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(74,216,240,.025) 1px,transparent 1px);background-size:60px 60px;animation:grid-drift 25s linear infinite;}
-@keyframes grid-drift{0%{background-position:0 0;}100%{background-position:60px 60px;}}
+        h1, h2, h3, h4, h5, h6 {
+          font-family: 'Playfair Display', serif;
+          font-weight: 400;
+        }
 
-/* ── ORBS ── */
-.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.1;}
-.orb-1{width:500px;height:500px;background:var(--cyan);top:-150px;right:-120px;animation:orb-float 14s ease-in-out infinite;}
-.orb-2{width:350px;height:350px;background:var(--purple);bottom:15%;left:-100px;animation:orb-float 18s ease-in-out infinite reverse;}
-.orb-3{width:250px;height:250px;background:var(--cyan);bottom:-80px;right:25%;animation:orb-float 11s ease-in-out infinite 4s;}
-.orb-4{width:180px;height:180px;background:var(--purple);top:40%;right:-50px;animation:orb-float 9s ease-in-out infinite 2s;}
-@keyframes orb-float{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-40px) scale(1.08);}}
+        a {
+          text-decoration: none;
+          color: inherit;
+          transition: color 0.3s ease;
+        }
 
-/* ── GLASS ── */
-.glass-card{background:rgba(19,27,46,.72);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07);}
-.glass-card-cyan{background:rgba(19,27,46,.72);backdrop-filter:blur(20px);border:1px solid rgba(74,216,240,.18);box-shadow:0 0 30px rgba(74,216,240,.04) inset;}
+        a:hover {
+          color: var(--accent);
+        }
 
-/* ── NEON ── */
-.neon-glow{box-shadow:0 0 15px rgba(74,216,240,.5),0 0 40px rgba(74,216,240,.2);}
-.neon-text-c{text-shadow:0 0 12px rgba(74,216,240,.9),0 0 30px rgba(74,216,240,.4);}
-.neon-text-p{text-shadow:0 0 12px rgba(221,184,255,.9),0 0 30px rgba(221,184,255,.4);}
+        /* Navigation */
+        nav {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          padding: 1.5rem 5%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: var(--nav-bg);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          z-index: 1000;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-/* ── SCANLINE ── */
-.scanline{position:relative;overflow:hidden;}
-.scanline::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(74,216,240,.012) 2px,rgba(74,216,240,.012) 4px);pointer-events:none;z-index:1;}
-.scanline-move::before{content:'';position:absolute;top:-30%;left:0;right:0;height:28%;background:linear-gradient(to bottom,transparent,rgba(74,216,240,.05),transparent);animation:scan-move 7s linear infinite;pointer-events:none;z-index:2;}
-@keyframes scan-move{0%{top:-30%;}100%{top:130%;}}
+        .logo {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.5rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
 
-/* ── GLITCH ── */
-.glitch{position:relative;}
-.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;}
-.glitch::before{color:var(--cyan);animation:gl1 4s infinite;clip-path:polygon(0 0,100% 0,100% 38%,0 38%);transform:translate(-2px,0);}
-.glitch::after{color:var(--purple);animation:gl2 4s infinite;clip-path:polygon(0 62%,100% 62%,100% 100%,0 100%);transform:translate(2px,0);}
-@keyframes gl1{0%,88%,100%{transform:translate(-2px,0);opacity:0;}90%{transform:translate(3px,-2px);opacity:.8;}92%{transform:translate(-4px,2px);opacity:.5;}94%{transform:translate(0,0);opacity:0;}}
-@keyframes gl2{0%,86%,100%{transform:translate(2px,0);opacity:0;}88%{transform:translate(-3px,2px);opacity:.8;}90%{transform:translate(4px,-2px);opacity:.5;}92%{transform:translate(0,0);opacity:0;}}
+        .nav-links {
+          display: flex;
+          gap: 2rem;
+          list-style: none;
+        }
 
-/* ── HOLOGRAM ── */
-.hologram{animation:holo 5s infinite;}
-@keyframes holo{0%,94%,100%{opacity:1;filter:none;}95%{opacity:.7;filter:hue-rotate(20deg) brightness(1.2);}97%{opacity:.9;}98%{opacity:.75;filter:hue-rotate(-10deg);}}
+        .nav-links a {
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
 
-/* ── TYPEWRITER ── */
-.typewriter{overflow:hidden;white-space:nowrap;width:0;animation:type-anim 3s steps(35) .6s forwards;}
-@keyframes type-anim{to{width:100%;}}
+        /* Hero Section (Home) */
+        .hero {
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 0 20px;
+          background: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.8)), url('photography-studio/images/hero_bg.png') no-repeat center center/cover;
+        }
 
-/* ── BLINK ── */
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-.blink{animation:blink 1s step-end infinite;}
+        .hero-content h1 {
+          font-size: 5vw;
+          margin-bottom: 1rem;
+          animation: fadeInDown 1s ease-out;
+        }
 
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s cubic-bezier(.23,1,.32,1),transform .75s cubic-bezier(.23,1,.32,1);}
-.reveal.in{opacity:1;transform:none;}
-.rev-l{opacity:0;transform:translateX(-28px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1);}
-.rev-l.in{opacity:1;transform:none;}
-.rev-r{opacity:0;transform:translateX(28px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1);}
-.rev-r.in{opacity:1;transform:none;}
-.rev-scale{opacity:0;transform:scale(.88);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1);}
-.rev-scale.in{opacity:1;transform:scale(1);}
-.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}.d5{transition-delay:.4s;}.d6{transition-delay:.48s;}
+        .hero-content p {
+          font-size: 1.2rem;
+          color: var(--text-secondary);
+          max-width: 600px;
+          margin: 0 auto 2rem;
+          animation: fadeInUp 1s ease-out 0.5s both;
+        }
 
-/* ── RING SPIN ── */
-@keyframes ring-spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
-@keyframes ring-spin-rev{from{transform:rotate(0deg);}to{transform:rotate(-360deg);}}
-.ring-spin{animation:ring-spin 9s linear infinite;}
-.ring-spin-rev{animation:ring-spin-rev 13s linear infinite;}
+        .btn {
+          display: inline-block;
+          padding: 12px 30px;
+          border: 1px solid var(--accent);
+          color: var(--accent);
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          font-size: 0.9rem;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
 
-/* ── STATUS DOT ── */
-@keyframes status-pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,216,240,.7);}50%{box-shadow:0 0 0 9px rgba(74,216,240,0);}}
-.s-dot{animation:status-pulse 2s ease infinite;}
+        .btn:hover {
+          background: var(--accent);
+          color: var(--bg-color);
+        }
 
-/* ── SKILL BAR ── */
-.skill-fill{height:100%;background:linear-gradient(90deg,var(--cyan),rgba(74,216,240,.55));border-radius:99px;width:0%;transition:width 1.5s cubic-bezier(.23,1,.32,1);position:relative;}
-.skill-fill::after{content:'';position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan),0 0 24px rgba(74,216,240,.6);}
+        /* Standard Page Layout */
+        .section-container {
+          padding: 120px 5% 60px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
 
-/* ── SCROLL BAR ── */
-.term-scroll::-webkit-scrollbar{width:3px;}
-.term-scroll::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:99px;}
+        .section-title {
+          font-size: 3.5rem;
+          margin-bottom: 3rem;
+          text-align: center;
+        }
 
-/* ── MAGNETIC BTN ── */
-.mag-btn{position:relative;overflow:hidden;transition:transform .2s cubic-bezier(.23,1,.32,1),box-shadow .2s;}
-.mag-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transform:translateX(-120%);transition:transform .45s;}
-.mag-btn:hover::before{transform:translateX(120%);}
-.mag-btn:active{transform:scale(.97)!important;}
+        /* About Page */
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: center;
+        }
 
-/* ── TILT ── */
-.tilt{transform-style:preserve-3d;transition:transform .12s;}
+        .about-image {
+          width: 100%;
+          height: 500px;
+          object-fit: cover;
+          border-radius: 4px;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
 
-/* ── PROJECT CARD ── */
-.proj-card{transition:transform .35s cubic-bezier(.23,1,.32,1),opacity .35s,box-shadow .35s;}
-.proj-card:hover{transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 40px rgba(74,216,240,.07);}
-.proj-img img{transition:transform .7s cubic-bezier(.23,1,.32,1),filter .35s;filter:grayscale(25%);}
-.proj-card:hover .proj-img img{transform:scale(1.09);filter:grayscale(0);}
+        .about-text h2 {
+          font-size: 2.5rem;
+          margin-bottom: 1.5rem;
+          color: var(--accent);
+        }
 
-/* ── NAV LINK ── */
-.nav-lnk{position:relative;}
-.nav-lnk::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--cyan);transition:width .3s cubic-bezier(.23,1,.32,1);}
-.nav-lnk:hover::after{width:100%;}
+        .about-text p {
+          color: var(--text-secondary);
+          margin-bottom: 1.5rem;
+          font-size: 1.1rem;
+        }
 
-/* ── LOADER ── */
-#loader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;transition:opacity .6s,visibility .6s;}
-#loader.out{opacity:0;visibility:hidden;}
-.ld-bar{width:220px;height:2px;background:rgba(74,216,240,.15);border-radius:99px;overflow:hidden;}
-.ld-fill{height:100%;background:var(--cyan);border-radius:99px;box-shadow:0 0 12px var(--cyan);animation:ld-anim 1.4s cubic-bezier(.23,1,.32,1) forwards;}
-@keyframes ld-anim{0%{width:0%;}60%{width:70%;}100%{width:100%;}}
+        /* Skills Page */
+        .skills-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 2rem;
+        }
 
-/* ── SECTION DIVIDER ── */
-.s-div{height:1px;background:linear-gradient(90deg,transparent,rgba(74,216,240,.35),rgba(221,184,255,.2),transparent);}
+        .skill-card {
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.05);
+          padding: 3rem 2rem;
+          text-align: center;
+          border-radius: 8px;
+          transition: transform 0.3s ease, background 0.3s ease;
+        }
 
-/* ── PARTICLE CANVAS ── */
-#particle-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;}
+        .skill-card:hover {
+          transform: translateY(-10px);
+          background: rgba(255,255,255,0.05);
+        }
 
-/* ── FLOATING BADGES ── */
-@keyframes float-badge{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-.float-badge{animation:float-badge 3s ease-in-out infinite;}
-.float-badge:nth-child(2){animation-delay:.5s;}
-.float-badge:nth-child(3){animation-delay:1s;}
-.float-badge:nth-child(4){animation-delay:1.5s;}
+        .skill-card i {
+          font-size: 3rem;
+          color: var(--accent);
+          margin-bottom: 1.5rem;
+        }
 
-/* ── NUMBER MORPH ── */
-.num-morph{display:inline-block;transition:transform .3s,opacity .3s;}
+        .skill-card h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
 
-/* ── HERO TITLE CHAR ── */
-.char{display:inline-block;opacity:0;transform:translateY(40px) rotate(5deg);transition:opacity .5s cubic-bezier(.23,1,.32,1),transform .5s cubic-bezier(.23,1,.32,1);}
-.char.in{opacity:1;transform:none;}
+        .skill-card p {
+          color: var(--text-secondary);
+        }
 
-/* ── BEAM LINE ── */
-@keyframes beam{0%{transform:translateX(-100%);}100%{transform:translateX(400%);}}
-.beam{animation:beam 3s ease-in-out infinite;}
+        /* Contact Page */
+        .contact-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 4rem;
+        }
 
-/* ── CONTACT INPUT ── */
-.c-input{width:100%;background:transparent;border-bottom:1px solid rgba(74,216,240,.18);transition:border-color .3s;padding:.65rem 0;color:#dbe2fd;outline:none;font-family:'JetBrains Mono',monospace;font-size:.8rem;}
-.c-input:focus{border-bottom-color:var(--cyan);}
-.c-input::placeholder{color:rgba(203,197,208,.3);}
+        .contact-info h3 {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+        }
 
-/* ── HOVER UNDERLINE ANIM ── */
-@keyframes underline-in{from{width:0;}to{width:100%;}}
+        .contact-info p {
+          color: var(--text-secondary);
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
 
-/* ── CARD BORDER GLOW ON HOVER ── */
-.glow-hover{transition:box-shadow .3s,border-color .3s;}
-.glow-hover:hover{box-shadow:0 0 0 1px rgba(74,216,240,.3),0 0 30px rgba(74,216,240,.08);border-color:rgba(74,216,240,.3)!important;}
+        .contact-form {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
 
-/* ── COUNTER ── */
-.counter-val{transition:opacity .2s;}
+        .contact-form input,
+        .contact-form textarea {
+          width: 100%;
+          padding: 1rem;
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.1);
+          color: var(--text-primary);
+          font-family: 'Inter', sans-serif;
+          transition: border-color 0.3s ease;
+        }
 
-/* ── MARQUEE ── */
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.marquee-inner{display:flex;animation:marquee 18s linear infinite;white-space:nowrap;}
-.marquee-inner:hover{animation-play-state:paused;}
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+          outline: none;
+          border-color: var(--accent);
+        }
 
-/* ── SCROLL INDICATOR ── */
-@keyframes scroll-dot{0%,100%{transform:translateY(0);opacity:1;}80%{transform:translateY(14px);opacity:0;}}
-.scroll-dot{animation:scroll-dot 2s ease infinite;}
-</style>
+        .contact-form textarea {
+          height: 150px;
+          resize: vertical;
+        }
+
+        .submit-btn {
+          background: var(--accent);
+          color: var(--bg-color);
+          padding: 15px;
+          border: none;
+          font-size: 1rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          cursor: pointer;
+          transition: opacity 0.3s ease;
+        }
+
+        .submit-btn:hover {
+          opacity: 0.9;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 4rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+          from { opacity: 0; transform: translateY(-30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .nav-links { display: none; }
+          .hero-content h1 { font-size: 3rem; }
+          .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+          .about-image { height: 400px; }
+        }
+    </style>
 </head>
-<body class="selection:bg-secondary selection:text-on-secondary relative">
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="font-mono text-secondary text-sm tracking-widest" id="ld-txt">INITIALIZING...</div>
-  <div class="ld-bar"><div class="ld-fill"></div></div>
-  <div class="font-mono text-on-surface-variant text-xs tracking-widest" id="ld-pct">0%</div>
-</div>
-
-<!-- CURSOR -->
-<div id="cur"></div>
-<div id="cur-ring"></div>
-
-<!-- CANVAS PARTICLES -->
-<canvas id="particle-canvas"></canvas>
-
-<!-- BACKGROUNDS -->
-<div class="grid-bg"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div class="orb orb-4"></div>
-
-<!-- NAV -->
-<header class="fixed top-0 w-full z-50 bg-surface-overlay backdrop-blur-xl border-b border-glass-border" style="box-shadow:0 0 30px rgba(74,216,240,.06);">
-  <div class="flex justify-between items-center px-6 py-4 max-w-screen-sm mx-auto">
-    <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;font-size:17px;">terminal</span>
-      <span class="font-mono font-black text-base text-transparent bg-clip-text bg-gradient-to-r from-secondary to-tertiary-fixed-dim tracking-tighter glitch" data-text="GHAZY.DEV">GHAZY.DEV</span>
-    </div>
-    <nav class="flex items-center gap-5">
-      <a href="#skills" class="nav-lnk font-mono text-xs text-on-surface-variant hover:text-secondary transition-colors">Skills</a>
-      <a href="#projects" class="nav-lnk font-mono text-xs text-on-surface-variant hover:text-secondary transition-colors">Works</a>
-      <a href="#contact" class="nav-lnk font-mono text-xs text-on-surface-variant hover:text-secondary transition-colors">Contact</a>
-      <a href="photography-landing.html" class="nav-lnk font-mono text-xs text-on-surface-variant hover:text-secondary transition-colors">Photography</a>
+<body>
+    <nav>
+        <a href="#home" class="logo">Lumina</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-  </div>
-</header>
 
-<main class="relative z-10 pt-20 pb-32 space-y-24 max-w-screen-sm mx-auto">
-
-  <!-- ── HERO ── -->
-  <section class="px-6 pt-10 flex flex-col items-center text-center">
-    <!-- Avatar -->
-    <div class="relative mb-8 reveal" style="width:148px;height:148px;">
-      <!-- Multi-ring spinner -->
-      <svg class="absolute inset-0 ring-spin" width="148" height="148" viewBox="0 0 148 148" fill="none">
-        <circle cx="74" cy="74" r="72" stroke="#4ad8f0" stroke-width="1" stroke-dasharray="8 5" opacity=".45"/>
-      </svg>
-      <svg class="absolute inset-0 ring-spin-rev" width="148" height="148" viewBox="0 0 148 148" fill="none">
-        <circle cx="74" cy="74" r="64" stroke="#ddb8ff" stroke-width=".6" stroke-dasharray="4 9" opacity=".3"/>
-      </svg>
-      <!-- Glow -->
-      <div class="absolute inset-4 bg-secondary blur-3xl opacity-20 rounded-full"></div>
-      <!-- Photo -->
-      <div class="absolute inset-3 rounded-full border border-secondary/35 p-1 overflow-hidden">
-        <img alt="Ghazy" class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700"
-          src="./profile.jpg"/>
-      </div>
-      <!-- Online badge -->
-      <div class="absolute -bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-surface-container-low/90 border border-secondary/30 rounded-full px-2.5 py-1 backdrop-blur-sm">
-        <div class="w-2 h-2 rounded-full bg-secondary s-dot"></div>
-        <span class="font-mono text-[9px] text-secondary tracking-widest">ONLINE</span>
-      </div>
-    </div>
-
-    <!-- Animated chars title -->
-    <div class="mb-1 reveal d1">
-      <p class="font-mono text-xs text-secondary tracking-[.2em] opacity-60">// PORTFOLIO v2.0</p>
-    </div>
-    <h1 class="font-display font-black text-4xl leading-tight tracking-tighter mb-2 reveal d2">
-      <span class="text-transparent bg-clip-text bg-gradient-to-br from-white via-secondary/90 to-tertiary-fixed-dim" id="h1-line1">Ghazy Al</span><br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-br from-tertiary-fixed-dim via-white to-secondary" id="h1-line2">Muhalla</span>
-    </h1>
-
-    <!-- Typewriter -->
-    <div class="reveal d3 mb-8 overflow-hidden" style="height:1.5rem;">
-      <p class="font-mono text-secondary/80 text-sm typewriter">&lt;Web Developer &amp; Designer /&gt;</p>
-    </div>
-
-    <!-- Floating tech badges -->
-    <div class="reveal d3 flex flex-wrap gap-2 justify-center mb-8">
-      <span class="float-badge font-mono text-[10px] bg-secondary/10 text-secondary border border-secondary/25 px-3 py-1 rounded-full">HTML/CSS</span>
-      <span class="float-badge font-mono text-[10px] bg-secondary/10 text-secondary border border-secondary/25 px-3 py-1 rounded-full">JavaScript</span>
-      <span class="float-badge font-mono text-[10px] bg-tertiary-fixed-dim/10 text-tertiary-fixed-dim border border-tertiary-fixed-dim/25 px-3 py-1 rounded-full">UI/UX Design</span>
-      <span class="float-badge font-mono text-[10px] bg-secondary/10 text-secondary border border-secondary/25 px-3 py-1 rounded-full">Desain Poster</span>
-    </div>
-
-    <!-- CTA Buttons -->
-    <div class="reveal d4 flex gap-3 flex-wrap justify-center">
-      <a href="#contact" class="mag-btn bg-secondary text-on-secondary px-6 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 neon-glow">
-        <span>Hubungi Saya</span>
-        <span class="material-symbols-outlined text-base">north_east</span>
-      </a>
-      <a href="#projects" class="mag-btn border border-secondary/40 text-secondary px-6 py-2.5 rounded-lg font-bold text-sm hover:bg-secondary/10 transition-colors">
-        Lihat Karya
-      </a>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="reveal d5 mt-12 flex flex-col items-center gap-1 opacity-35">
-      <span class="font-mono text-[10px] tracking-widest text-on-surface-variant">SCROLL</span>
-      <div class="w-5 h-8 rounded-full border border-on-surface-variant/30 flex items-start justify-center pt-1.5">
-        <div class="w-1 h-1.5 rounded-full bg-secondary scroll-dot"></div>
-      </div>
-    </div>
-  </section>
-
-  <div class="s-div mx-6"></div>
-
-  <!-- ── MARQUEE SKILLS ── -->
-  <section class="overflow-hidden reveal" style="mask:linear-gradient(90deg,transparent,black 15%,black 85%,transparent); -webkit-mask:linear-gradient(90deg,transparent,black 15%,black 85%,transparent);">
-    <div class="marquee-inner py-2">
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">HTML</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">CSS</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">JAVASCRIPT</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">TAILWIND</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">UI/UX DESIGN</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">FIGMA</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">WEB DEV</span><span class="text-secondary/30 mx-2">◆</span>
-      <!-- Duplicate for seamless loop -->
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">HTML</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">CSS</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">JAVASCRIPT</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">TAILWIND</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">UI/UX DESIGN</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">FIGMA</span><span class="text-secondary/30 mx-2">◆</span>
-      <span class="font-mono text-xs text-on-surface-variant/40 tracking-widest mx-6">WEB DEV</span><span class="text-secondary/30 mx-2">◆</span>
-    </div>
-  </section>
-
-  <div class="s-div mx-6"></div>
-
-  <!-- ── BENTO STATS ── -->
-  <section class="px-6">
-    <div class="grid grid-cols-2 gap-3">
-      <div class="glass-card-cyan p-5 rounded-xl flex flex-col justify-between aspect-square tilt glow-hover reveal d1">
-        <span class="material-symbols-outlined text-secondary opacity-40" style="font-size:20px;">cake</span>
-        <div>
-          <p class="font-mono text-[10px] text-on-surface-variant tracking-widest mb-1">USIA</p>
-          <p class="font-mono font-bold text-3xl text-secondary neon-text-c"><span class="counter-val" data-target="19">0</span><span class="text-sm text-on-surface-variant font-normal">yr</span></p>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Capturing the Essence of Light</h1>
+            <p>Elevating ordinary moments into extraordinary memories through the lens of artistry and passion.</p>
+            <a href="#about" class="btn">Discover Our Story</a>
         </div>
-      </div>
-      <div class="glass-card p-5 rounded-xl flex flex-col justify-between aspect-square tilt glow-hover reveal d2">
-        <span class="material-symbols-outlined text-tertiary-fixed-dim opacity-40" style="font-size:20px;">location_on</span>
-        <div>
-          <p class="font-mono text-[10px] text-on-surface-variant tracking-widest mb-1">LOKASI</p>
-          <p class="font-mono font-bold text-sm text-on-surface leading-tight">Bulu Cina,<br>Deli Serdang</p>
+    </section>
+
+    <section id="about" class="section-container">
+        <h2 class="section-title">Behind the Lens</h2>
+        <div class="about-grid">
+            <img src="photography-studio/images/about_img.png" alt="Photographer in action" class="about-image">
+            <div class="about-text">
+                <h2>Our Vision</h2>
+                <p>At Lumina Studio, we believe that every face has a story and every moment holds a universe of emotion. Founded in 2018, our studio has been dedicated to crafting visual narratives that stand the test of time.</p>
+                <p>Our approach blends cinematic aesthetics with documentary-style authenticity. We don't just take pictures; we craft heirlooms. Whether it's a high-fashion editorial, a deeply personal portrait, or the quiet intimacy of a wedding day, we approach each project with an artist's eye and a perfectionist's touch.</p>
+                <a href="#skills" class="btn" style="margin-top: 1.5rem;">Explore Our Expertise</a>
+            </div>
         </div>
-      </div>
-      <div class="col-span-2 glass-card p-5 rounded-xl flex items-center justify-between glow-hover reveal d3">
-        <div>
-          <p class="font-mono text-[10px] text-on-surface-variant tracking-widest mb-1">FOKUS UTAMA</p>
-          <p class="font-mono font-bold text-xl text-tertiary-fixed-dim neon-text-p">Web Design &amp; Dev</p>
+    </section>
+
+    <section id="skills" class="section-container">
+        <h2 class="section-title">Our Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i>📷</i>
+                <h3>Portraiture</h3>
+                <p>Capturing the raw emotion and unique personality of individuals through intimate and artistic portrait photography.</p>
+            </div>
+            <div class="skill-card">
+                <i>💍</i>
+                <h3>Wedding</h3>
+                <p>Documenting the most important day of your life with a cinematic, storytelling approach that preserves every precious moment.</p>
+            </div>
+            <div class="skill-card">
+                <i>✨</i>
+                <h3>Fashion Editorial</h3>
+                <p>Creating striking, high-end visual concepts for fashion brands, focusing on texture, lighting, and avant-garde styling.</p>
+            </div>
+            <div class="skill-card">
+                <i>🎬</i>
+                <h3>Art Direction</h3>
+                <p>Full-scale set design, mood-boarding, dan creative direction to bring complex visual narratives to life seamlessly.</p>
+            </div>
         </div>
-        <span class="material-symbols-outlined text-5xl text-tertiary-fixed-dim opacity-15">code_blocks</span>
-      </div>
-      <div class="col-span-2 glass-card-cyan p-4 rounded-xl flex items-center gap-3 reveal d4">
-        <div class="w-2.5 h-2.5 bg-secondary rounded-full s-dot flex-shrink-0"></div>
-        <p class="font-mono text-secondary text-xs tracking-widest">STATUS: READY FOR PROJECT</p>
-        <span class="ml-auto font-mono text-[10px] text-on-surface-variant opacity-50 blink">█</span>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="s-div mx-6"></div>
-
-  <!-- ── CYBER ID CARD ── -->
-  <section class="px-6">
-    <div class="flex items-center gap-3 mb-6 reveal">
-      <div class="w-8 h-px bg-secondary"></div>
-      <span class="font-mono text-xs text-secondary tracking-widest">IDENTIFICATION</span>
-    </div>
-    <div class="glass-card-cyan rounded-xl p-7 relative overflow-hidden scanline scanline-move hologram reveal d1">
-      <!-- Corner brackets -->
-      <div class="absolute top-3 left-3 w-5 h-5 border-t border-l border-secondary/60"></div>
-      <div class="absolute top-3 right-3 w-5 h-5 border-t border-r border-secondary/60"></div>
-      <div class="absolute bottom-3 left-3 w-5 h-5 border-b border-l border-secondary/60"></div>
-      <div class="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-secondary/60"></div>
-      <!-- Beam sweep -->
-      <div class="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-transparent via-secondary/6 to-transparent beam" style="animation-duration:4s;animation-delay:1s;"></div>
-      <div class="absolute top-0 right-0 p-4 z-0">
-        <span class="material-symbols-outlined text-secondary opacity-10 select-none" style="font-size:80px;">qr_code_2</span>
-      </div>
-      <div class="space-y-5 relative z-10">
-        <div class="border-b border-secondary/15 pb-4">
-          <p class="font-mono text-[10px] text-secondary tracking-widest mb-1">SUBJECT NAME</p>
-          <p class="font-display font-black text-2xl uppercase tracking-tight">Ghazy Al Muhalla</p>
+    <section id="contact" class="section-container">
+        <h2 class="section-title">Let's Create Together</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>Studio Details</h3>
+                <p>📍 124 Art District, Creative Avenue<br>Metropolis, NY 10001</p>
+                <p>📧 hello@luminastudio.com</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <br>
+                <h3>Follow Us</h3>
+                <p>Instagram: @luminastudio</p>
+                <p>Twitter: @lumina_photo</p>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for reaching out. We will get back to you shortly.');">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject / Project Type" required>
+                <textarea placeholder="Tell us about your vision..." required></textarea>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
         </div>
-        <div>
-          <p class="font-mono text-[10px] text-on-surface-variant tracking-widest mb-2">BIO PROTOCOL &amp; MOTTO</p>
-          <p class="font-mono text-xs text-on-surface leading-relaxed opacity-75 mb-2">"Saya adalah seorang pelajar yang memiliki minat besar di bidang desain web dan pengembangan teknologi digital. Saya senang mempelajari hal-hal baru."</p>
-          <p class="font-mono text-xs text-secondary leading-relaxed italic">"Terus belajar, terus berkembang, dan ciptakan karya yang memberi manfaat."</p>
-        </div>
-        <div class="flex justify-between items-end">
-          <div class="font-mono text-[10px] text-on-surface-variant space-y-0.5">
-            <p>SEC_ID: GZY-2006-X1</p>
-            <p>ACCESS: <span class="text-green-400">GRANTED</span></p>
-          </div>
-          <img alt="ID" class="w-12 h-12 rounded border border-secondary/30 p-1 opacity-40"
-            src="./profile.jpg"/>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="s-div mx-6"></div>
-
-  <!-- ── TERMINAL ── -->
-  <section class="px-6 reveal">
-    <div class="bg-[#060d20] rounded-xl overflow-hidden border border-secondary/18" style="box-shadow:0 0 50px rgba(74,216,240,.05);">
-      <div class="bg-surface-container-high px-4 py-2.5 flex items-center justify-between border-b border-secondary/10">
-        <div class="flex gap-2">
-          <div class="w-3 h-3 rounded-full bg-red-500/55 hover:bg-red-500 transition-colors cursor-pointer"></div>
-          <div class="w-3 h-3 rounded-full bg-yellow-500/55 hover:bg-yellow-500 transition-colors cursor-pointer"></div>
-          <div class="w-3 h-3 rounded-full bg-secondary/55 hover:bg-secondary transition-colors cursor-pointer"></div>
-        </div>
-        <span class="font-mono text-[10px] text-on-surface-variant">ghazy@portfolio — bash — 80×24</span>
-        <span class="material-symbols-outlined text-on-surface-variant opacity-30" style="font-size:14px;">terminal</span>
-      </div>
-      <div class="p-4 h-64 font-mono text-xs term-scroll overflow-y-auto text-secondary scanline" id="term-body" style="line-height:1.75;">
-        <div class="mb-1 text-on-surface-variant">GHAZY OS v2.1.0 — Cyber Portfolio Shell</div>
-        <div class="mb-3 text-on-surface-variant">Type <span class="text-secondary">'help'</span> to see commands.<span class="blink"> ▌</span></div>
-        <div id="term-out"></div>
-        <div class="flex items-center gap-2 mt-1">
-          <span class="text-tertiary-fixed-dim">visitor@ghazy</span><span class="text-on-surface-variant">:</span><span class="text-secondary">~</span><span class="text-on-surface-variant">$&nbsp;</span>
-          <input autocomplete="off" class="bg-transparent border-none outline-none p-0 text-secondary w-full font-mono text-xs" id="term-in" type="text" spellcheck="false"/>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="s-div mx-6"></div>
-
-  <!-- ── SKILLS ── -->
-  <section class="px-6" id="skills">
-    <div class="flex items-center gap-3 mb-8 reveal">
-      <div class="w-8 h-px bg-secondary"></div>
-      <span class="font-mono text-xs text-secondary tracking-widest">CORE ARCHITECTURE</span>
-    </div>
-    <div class="space-y-7" id="skills-wrap">
-      <div class="reveal d1">
-        <div class="flex justify-between mb-2">
-          <span class="font-mono text-sm text-on-surface">HTML / Web Structuring</span>
-          <span class="font-mono text-xs text-secondary">95%</span>
-        </div>
-        <div class="h-px w-full bg-surface-container-highest rounded-full overflow-hidden">
-          <div class="skill-fill neon-glow" data-w="95"></div>
-        </div>
-      </div>
-      <div class="reveal d2">
-        <div class="flex justify-between mb-2">
-          <span class="font-mono text-sm text-on-surface">Tailwind CSS / Styling</span>
-          <span class="font-mono text-xs text-secondary">90%</span>
-        </div>
-        <div class="h-px w-full bg-surface-container-highest rounded-full overflow-hidden">
-          <div class="skill-fill neon-glow" data-w="90"></div>
-        </div>
-      </div>
-      <div class="reveal d3">
-        <div class="flex justify-between mb-2">
-          <span class="font-mono text-sm text-on-surface">UI/UX Design</span>
-          <span class="font-mono text-xs text-secondary">85%</span>
-        </div>
-        <div class="h-px w-full bg-surface-container-highest rounded-full overflow-hidden">
-          <div class="skill-fill neon-glow" data-w="85"></div>
-        </div>
-      </div>
-      <div class="reveal d4">
-        <div class="flex justify-between mb-2">
-          <span class="font-mono text-sm text-on-surface">Digital Poster Design</span>
-          <span class="font-mono text-xs text-secondary">80%</span>
-        </div>
-        <div class="h-px w-full bg-surface-container-highest rounded-full overflow-hidden">
-          <div class="skill-fill neon-glow" data-w="80"></div>
-        </div>
-      </div>
-      <div class="reveal d5">
-        <div class="flex justify-between mb-2">
-          <span class="font-mono text-sm text-on-surface">JavaScript / Logic</span>
-          <span class="font-mono text-xs text-secondary">75%</span>
-        </div>
-        <div class="h-px w-full bg-surface-container-highest rounded-full overflow-hidden">
-          <div class="skill-fill neon-glow" data-w="75"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="s-div mx-6"></div>
-
-  <!-- ── TIMELINE ── -->
-  <section class="px-6 reveal">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-8 h-px bg-secondary"></div>
-      <span class="font-mono text-xs text-secondary tracking-widest">CHRONOLOGY</span>
-    </div>
-    <div class="relative ml-3 space-y-10">
-      <div class="absolute left-0 top-2 w-px h-full bg-gradient-to-b from-secondary via-secondary/25 to-transparent"></div>
-      <div class="relative pl-8 reveal d1">
-        <div class="absolute -left-[4.5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary s-dot border-2 border-bg"></div>
-        <p class="font-mono text-[10px] text-secondary tracking-widest mb-1">PRESENT — AKTIF</p>
-        <h3 class="font-display font-bold text-base text-on-surface mb-1">Pengembangan Web &amp; AI</h3>
-        <p class="font-mono text-xs text-on-surface-variant leading-relaxed">Aktif mempelajari teknologi digital, AI, serta mengembangkan konsep web untuk sekolah dan UMKM lokal.</p>
-        <div class="flex gap-2 mt-3">
-          <span class="font-mono text-[10px] bg-secondary/10 text-secondary px-2 py-0.5 rounded border border-secondary/20">Web Design</span>
-          <span class="font-mono text-[10px] bg-secondary/10 text-secondary px-2 py-0.5 rounded border border-secondary/20">Web Dev</span>
-          <span class="font-mono text-[10px] bg-secondary/10 text-secondary px-2 py-0.5 rounded border border-secondary/20">AI Tools</span>
-        </div>
-      </div>
-      <div class="relative pl-8 reveal d2">
-        <div class="absolute -left-[4.5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary/40 border-2 border-bg"></div>
-        <p class="font-mono text-[10px] text-on-surface-variant tracking-widest mb-1">2023 — 2025</p>
-        <h3 class="font-display font-bold text-base text-on-surface mb-1">Desain Poster &amp; Ilustrasi</h3>
-        <p class="font-mono text-xs text-on-surface-variant leading-relaxed">Mengikuti lomba desain poster digital bertema Society 5.0, Go Green Economy, dan kegiatan sosial edukatif.</p>
-        <div class="flex gap-2 mt-3">
-          <span class="font-mono text-[10px] bg-tertiary-fixed-dim/10 text-tertiary-fixed-dim px-2 py-0.5 rounded border border-tertiary-fixed-dim/20">Canva</span>
-          <span class="font-mono text-[10px] bg-tertiary-fixed-dim/10 text-tertiary-fixed-dim px-2 py-0.5 rounded border border-tertiary-fixed-dim/20">Poster Design</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="s-div mx-6"></div>
-
-  <!-- ── PROJECTS ── -->
-  <section class="px-6" id="projects">
-    <div class="flex items-center justify-between mb-6 reveal">
-      <div>
-        <div class="flex items-center gap-3 mb-1">
-          <div class="w-8 h-px bg-secondary"></div>
-          <span class="font-mono text-xs text-secondary tracking-widest">SELECTED WORKS</span>
-        </div>
-        <h2 class="font-display font-black text-2xl">Karya Terpilih</h2>
-      </div>
-      <div class="flex gap-2">
-        <button class="filter-btn active font-mono text-[11px] px-3 py-1 rounded-full border border-secondary bg-secondary/10 text-secondary" data-f="all">All</button>
-        <button class="filter-btn font-mono text-[11px] px-3 py-1 rounded-full border border-glass-border text-on-surface-variant hover:text-secondary transition-colors" data-f="web">Web</button>
-      </div>
-    </div>
-    <div class="space-y-5" id="proj-grid">
-      <!-- Project 1: Desain Website Sekolah -->
-      <div class="proj-card glass-card rounded-xl overflow-hidden reveal d1 glow-hover" data-cat="web">
-        <div class="proj-img h-44 relative overflow-hidden">
-          <img alt="Desain Website Sekolah" class="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
-          <div class="absolute inset-0 opacity-0 proj-overlay transition-opacity duration-300 flex items-center justify-center" style="background:rgba(74,216,240,.04);">
-            <span class="font-mono text-[10px] text-secondary tracking-widest border border-secondary/40 px-3 py-1 rounded-full backdrop-blur-sm">VIEW PROJECT</span>
-          </div>
-          <div class="absolute top-3 right-3">
-            <span class="font-mono text-[10px] bg-secondary/20 text-secondary px-2 py-0.5 rounded border border-secondary/30 backdrop-blur-sm">School Portal</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-base mb-1">Desain Website Sekolah</h3>
-          <p class="font-mono text-xs text-on-surface-variant mb-4 leading-relaxed">Konsep website sekolah modern dengan tampilan yang informatif, responsif, dan mudah digunakan.</p>
-          <a class="text-secondary font-mono text-xs flex items-center gap-1 hover:gap-2 transition-all w-fit" href="saas-landing.html">VIEW PROJECT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-        </div>
-      </div>
-
-      <!-- Project 2: Desain Website UMKM -->
-      <div class="proj-card glass-card rounded-xl overflow-hidden reveal d2 glow-hover" data-cat="web">
-        <div class="proj-img h-44 relative overflow-hidden">
-          <img alt="Desain Website UMKM" class="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=80"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
-          <div class="absolute inset-0 opacity-0 proj-overlay transition-opacity duration-300 flex items-center justify-center" style="background:rgba(74,216,240,.04);">
-            <span class="font-mono text-[10px] text-secondary tracking-widest border border-secondary/40 px-3 py-1 rounded-full backdrop-blur-sm">VIEW PROJECT</span>
-          </div>
-          <div class="absolute top-3 right-3">
-            <span class="font-mono text-[10px] bg-secondary/20 text-secondary px-2 py-0.5 rounded border border-secondary/30 backdrop-blur-sm">UMKM Site</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-base mb-1">Desain Website UMKM</h3>
-          <p class="font-mono text-xs text-on-surface-variant mb-4 leading-relaxed">Mendesain website kuliner sederhana untuk membantu promosi produk UMKM agar lebih dikenal digital.</p>
-          <a class="text-secondary font-mono text-xs flex items-center gap-1 hover:gap-2 transition-all w-fit" href="culinary-landing.html">VIEW PROJECT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-        </div>
-      </div>
-
-      <!-- Project 3: Poster Ilustrasi Digital -->
-      <div class="proj-card glass-card rounded-xl overflow-hidden reveal d3 glow-hover" data-cat="web">
-        <div class="proj-img h-44 relative overflow-hidden">
-          <img alt="Poster Ilustrasi Digital" class="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=700&q=80"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
-          <div class="absolute inset-0 opacity-0 proj-overlay transition-opacity duration-300 flex items-center justify-center" style="background:rgba(74,216,240,.04);">
-            <span class="font-mono text-[10px] text-secondary tracking-widest border border-secondary/40 px-3 py-1 rounded-full backdrop-blur-sm">VIEW PROJECT</span>
-          </div>
-          <div class="absolute top-3 right-3">
-            <span class="font-mono text-[10px] bg-secondary/20 text-secondary px-2 py-0.5 rounded border border-secondary/30 backdrop-blur-sm">Digital Illustration</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-base mb-1">Poster Ilustrasi Digital</h3>
-          <p class="font-mono text-xs text-on-surface-variant mb-4 leading-relaxed">Membuat berbagai poster ilustrasi bertema Society 5.0, Go Green Economy, dan sosial edukatif.</p>
-          <a class="text-secondary font-mono text-xs flex items-center gap-1 hover:gap-2 transition-all w-fit" href="agency-landing.html">VIEW PROJECT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-        </div>
-      </div>
-
-      <!-- Project 4: Nova Ring Store -->
-      <div class="proj-card glass-card rounded-xl overflow-hidden reveal d4 glow-hover" data-cat="web">
-        <div class="proj-img h-44 relative overflow-hidden">
-          <img alt="Nova Ring" class="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1613688244550-91a9826804fa?auto=format&fit=crop&w=700&q=80"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
-          <div class="absolute inset-0 opacity-0 proj-overlay transition-opacity duration-300 flex items-center justify-center" style="background:rgba(74,216,240,.04);">
-            <span class="font-mono text-[10px] text-secondary tracking-widest border border-secondary/40 px-3 py-1 rounded-full backdrop-blur-sm">VIEW PROJECT</span>
-          </div>
-          <div class="absolute top-3 right-3">
-            <span class="font-mono text-[10px] bg-secondary/20 text-secondary px-2 py-0.5 rounded border border-secondary/30 backdrop-blur-sm">Smart Gadget</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-base mb-1">Nova Ring Store</h3>
-          <p class="font-mono text-xs text-on-surface-variant mb-4 leading-relaxed">Desain e-commerce produk cerdas dengan visualisasi warna cincin interaktif berbasis CSS.</p>
-          <a class="text-secondary font-mono text-xs flex items-center gap-1 hover:gap-2 transition-all w-fit" href="product-landing.html">VIEW PROJECT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-        </div>
-      </div>
-
-      <!-- Project 5: Studio Fotografi Lumina -->
-      <div class="proj-card glass-card rounded-xl overflow-hidden reveal d5 glow-hover" data-cat="web">
-        <div class="proj-img h-44 relative overflow-hidden">
-          <img alt="Studio Fotografi Lumina" class="w-full h-full object-cover"
-            src="photography-studio/images/hero_bg.png"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
-          <div class="absolute inset-0 opacity-0 proj-overlay transition-opacity duration-300 flex items-center justify-center" style="background:rgba(74,216,240,.04);">
-            <span class="font-mono text-[10px] text-secondary tracking-widest border border-secondary/40 px-3 py-1 rounded-full backdrop-blur-sm">VIEW PROJECT</span>
-          </div>
-          <div class="absolute top-3 right-3">
-            <span class="font-mono text-[10px] bg-secondary/20 text-secondary px-2 py-0.5 rounded border border-secondary/30 backdrop-blur-sm">Photography Web</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-display font-bold text-base mb-1">Studio Fotografi Lumina</h3>
-          <p class="font-mono text-xs text-on-surface-variant mb-4 leading-relaxed">Desain website multi-halaman untuk studio fotografi premium dengan estetika modern, dark mode, dan glassmorphism.</p>
-          <a class="text-secondary font-mono text-xs flex items-center gap-1 hover:gap-2 transition-all w-fit" href="photography-landing.html">VIEW PROJECT <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="s-div mx-6"></div>
-
-  <!-- ── CONTACT ── -->
-  <section class="px-6" id="contact">
-    <div class="flex items-center gap-3 mb-2 reveal">
-      <div class="w-8 h-px bg-secondary"></div>
-      <span class="font-mono text-xs text-secondary tracking-widest">ESTABLISH CONNECTION</span>
-    </div>
-    <h2 class="font-display font-black text-2xl mb-8 reveal d1">Let's Build Together</h2>
-    <div class="glass-card-cyan rounded-xl p-6 space-y-5 reveal d2">
-      <div>
-        <label class="font-mono text-[10px] text-on-surface-variant block mb-2 tracking-widest">SUBJECT NAME</label>
-        <input id="contact-name" class="c-input" placeholder="Enter your name" type="text"/>
-      </div>
-      <div>
-        <label class="font-mono text-[10px] text-on-surface-variant block mb-2 tracking-widest">RETURN ADDRESS</label>
-        <input id="contact-email" class="c-input" placeholder="email@example.com" type="email"/>
-      </div>
-      <div>
-        <label class="font-mono text-[10px] text-on-surface-variant block mb-2 tracking-widest">ENCRYPTED MESSAGE</label>
-        <textarea id="contact-message" class="c-input resize-none" placeholder="Your message here..." rows="4"></textarea>
-      </div>
-      <button id="send-btn" class="mag-btn w-full bg-secondary text-on-secondary py-3 rounded-lg font-bold font-mono text-xs tracking-widest uppercase neon-glow flex items-center justify-center gap-2">
-        <span class="material-symbols-outlined text-base">send</span>
-        Initialize Transmission
-      </button>
-    </div>
-    <div class="mt-8 space-y-3 reveal d3">
-      <div class="flex items-center gap-4 glass-card p-4 rounded-xl glow-hover">
-        <div class="w-9 h-9 rounded-full border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0"><span class="material-symbols-outlined" style="font-size:18px;">mail</span></div>
-        <div>
-          <p class="font-mono text-[10px] text-on-surface-variant tracking-widest">EMAIL</p>
-          <p class="font-mono text-sm text-on-surface">ghozyalmuhalla@gmail.com</p>
-        </div>
-        <span id="copy-email-btn" class="material-symbols-outlined ml-auto text-on-surface-variant/30 hover:text-secondary transition-colors cursor-pointer" style="font-size:16px;">content_copy</span>
-      </div>
-      <div class="flex items-center gap-4 glass-card p-4 rounded-xl glow-hover">
-        <div class="w-9 h-9 rounded-full border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></div>
-        <div>
-          <p class="font-mono text-[10px] text-on-surface-variant tracking-widest">WHATSAPP</p>
-          <p class="font-mono text-sm text-on-surface">08998215739</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-4 glass-card p-4 rounded-xl glow-hover">
-        <div class="w-9 h-9 rounded-full border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0"><span class="material-symbols-outlined" style="font-size:18px;">location_on</span></div>
-        <div>
-          <p class="font-mono text-[10px] text-on-surface-variant tracking-widest">OPERATING BASE</p>
-          <p class="font-mono text-sm text-on-surface">Bulu Cina, Deli Serdang</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="relative z-10 bg-surface-dim border-t border-glass-border py-10 px-6">
-  <div class="max-w-screen-sm mx-auto flex flex-col items-center gap-6">
-    <span class="font-mono font-black text-xl text-transparent bg-clip-text bg-gradient-to-r from-secondary to-tertiary-fixed-dim glitch" data-text="GHAZY.DEV">GHAZY.DEV</span>
-    <div class="flex gap-6">
-      <a class="nav-lnk font-mono text-xs text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors" href="https://github.com/ghozyalmuhalla-web" target="_blank">GitHub</a>
-      <a class="nav-lnk font-mono text-xs text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors" href="https://www.instagram.com/zyy_muhalla/" target="_blank">Instagram</a>
-      <a class="nav-lnk font-mono text-xs text-on-surface-variant hover:text-tertiary-fixed-dim transition-colors" href="https://vercel.com/ghazy-muhalla" target="_blank">Vercel</a>
-    </div>
-    <p class="font-mono text-[10px] text-on-surface-variant/35 tracking-widest">© 2024 GHAZY.DEV — BUILT WITH PRECISION</p>
-  </div>
-</footer>
-
-<!-- BOTTOM NAV -->
-<nav class="fixed bottom-0 left-0 w-full bg-surface-container-low/80 backdrop-blur-lg border-t border-glass-border z-50 md:hidden" style="box-shadow:0 -4px 30px rgba(0,0,0,.5);">
-  <div class="flex justify-around items-center py-2.5 px-4 max-w-screen-sm mx-auto">
-    <a class="bnav flex flex-col items-center text-secondary" href="#">
-      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;font-size:22px;">home</span>
-      <span class="font-mono text-[9px] mt-0.5 tracking-wider">HOME</span>
-    </a>
-    <a class="bnav flex flex-col items-center text-on-surface-variant/50 hover:text-secondary transition-all" href="#skills">
-      <span class="material-symbols-outlined" style="font-size:22px;">bolt</span>
-      <span class="font-mono text-[9px] mt-0.5 tracking-wider">SKILLS</span>
-    </a>
-    <a class="bnav flex flex-col items-center text-on-surface-variant/50 hover:text-secondary transition-all" href="#projects">
-      <span class="material-symbols-outlined" style="font-size:22px;">grid_view</span>
-      <span class="font-mono text-[9px] mt-0.5 tracking-wider">WORKS</span>
-    </a>
-    <a class="bnav flex flex-col items-center text-on-surface-variant/50 hover:text-secondary transition-all" href="#contact">
-      <span class="material-symbols-outlined" style="font-size:22px;">mail</span>
-      <span class="font-mono text-[9px] mt-0.5 tracking-wider">CONTACT</span>
-    </a>
-  </div>
-</nav>
-
-<script>
-// ── LOADER ──
-let pct = 0;
-const pctEl = document.getElementById('ld-pct');
-const ldTxt = document.getElementById('ld-txt');
-const msgs = ['INITIALIZING...','LOADING ASSETS...','RENDERING...','COMPLETE'];
-let mi = 0;
-const ldInt = setInterval(() => {
-  pct += Math.random() * 18;
-  if (pct > 100) pct = 100;
-  pctEl.textContent = Math.round(pct) + '%';
-  if (Math.round(pct) > 25 && mi === 0) { mi=1; ldTxt.textContent = msgs[1]; }
-  if (Math.round(pct) > 60 && mi === 1) { mi=2; ldTxt.textContent = msgs[2]; }
-  if (Math.round(pct) === 100) {
-    ldTxt.textContent = msgs[3];
-    clearInterval(ldInt);
-    setTimeout(() => document.getElementById('loader').classList.add('out'), 400);
-  }
-}, 120);
-
-// ── PARTICLES ──
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-let W, H, pts = [];
-function resizeCanvas() {
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-function mkPt() {
-  return {
-    x: Math.random() * W, y: Math.random() * H,
-    vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
-    r: Math.random() * 1.5 + .3,
-    a: Math.random(),
-    c: Math.random() > .6 ? '74,216,240' : '221,184,255'
-  };
-}
-for (let i = 0; i < 80; i++) pts.push(mkPt());
-
-let mouseX = -9999, mouseY = -9999;
-document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-
-function drawParticles() {
-  ctx.clearRect(0, 0, W, H);
-  pts.forEach(p => {
-    p.x += p.vx; p.y += p.vy;
-    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-    // Mouse repel
-    const dx = p.x - mouseX, dy = p.y - mouseY;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist < 120) {
-      const force = (120 - dist) / 120 * .8;
-      p.x += dx/dist * force;
-      p.y += dy/dist * force;
-    }
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(${p.c},${p.a * .7})`;
-    ctx.fill();
-  });
-  // Draw connections
-  for (let i = 0; i < pts.length; i++) {
-    for (let j = i+1; j < pts.length; j++) {
-      const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-      const d = Math.sqrt(dx*dx + dy*dy);
-      if (d < 100) {
-        ctx.beginPath();
-        ctx.moveTo(pts[i].x, pts[i].y);
-        ctx.lineTo(pts[j].x, pts[j].y);
-        ctx.strokeStyle = `rgba(74,216,240,${(1 - d/100) * .08})`;
-        ctx.lineWidth = .5;
-        ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(drawParticles);
-}
-drawParticles();
-
-// ── CURSOR ──
-const cur = document.getElementById('cur');
-const curRing = document.getElementById('cur-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
-(function animRing() {
-  rx += (mx-rx) * .1; ry += (my-ry) * .1;
-  curRing.style.left=rx+'px'; curRing.style.top=ry+'px';
-  requestAnimationFrame(animRing);
-})();
-
-// ── SCROLL REVEAL ──
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: .13 });
-document.querySelectorAll('.reveal,.rev-l,.rev-r,.rev-scale').forEach(el => revObs.observe(el));
-
-// ── SKILL BARS ──
-const skillObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting) {
-      e.target.querySelectorAll('.skill-fill').forEach(b => { b.style.width = b.dataset.w + '%'; });
-      skillObs.unobserve(e.target);
-    }
-  });
-}, { threshold: .3 });
-const sk = document.getElementById('skills-wrap');
-if(sk) skillObs.observe(sk);
-
-// ── COUNTER ANIMATION ──
-const ctrObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting) {
-      e.target.querySelectorAll('.counter-val').forEach(el => {
-        const target = +el.dataset.target;
-        let cur2 = 0;
-        const step = target / 40;
-        const t = setInterval(() => {
-          cur2 += step;
-          if(cur2 >= target) { cur2 = target; clearInterval(t); }
-          el.textContent = Math.round(cur2);
-        }, 30);
-      });
-      ctrObs.unobserve(e.target);
-    }
-  });
-}, { threshold: .5 });
-document.querySelectorAll('[data-target]').forEach(el => {
-  const parent = el.closest('.glass-card-cyan, .glass-card');
-  if(parent) ctrObs.observe(parent);
-});
-
-// ── TILT CARDS ──
-document.querySelectorAll('.tilt').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - .5;
-    const y = (e.clientY - r.top) / r.height - .5;
-    card.style.transform = `perspective(450px) rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
-  });
-  card.addEventListener('mouseleave', () => { card.style.transform=''; });
-});
-
-// ── PROJECT CARD OVERLAY ──
-document.querySelectorAll('.proj-card').forEach(card => {
-  const ov = card.querySelector('.proj-overlay');
-  if(ov) {
-    card.addEventListener('mouseenter', () => ov.style.opacity='1');
-    card.addEventListener('mouseleave', () => ov.style.opacity='0');
-  }
-});
-
-// ── MAGNETIC BUTTONS ──
-document.querySelectorAll('.mag-btn').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const x = (e.clientX - r.left - r.width/2) * .18;
-    const y = (e.clientY - r.top - r.height/2) * .18;
-    btn.style.transform = `translate(${x}px,${y}px)`;
-  });
-  btn.addEventListener('mouseleave', () => { btn.style.transform=''; });
-});
-
-// ── TERMINAL ──
-const termIn = document.getElementById('term-in');
-const termOut = document.getElementById('term-out');
-const termBody = document.getElementById('term-body');
-const cmds = {
-  'help': `<span style="color:#ddb8ff">Available:</span> <span style="color:#4ad8f0">about</span>, <span style="color:#4ad8f0">skills</span>, <span style="color:#4ad8f0">contact</span>, <span style="color:#4ad8f0">projects</span>, <span style="color:#4ad8f0">clear</span>, <span style="color:#4ad8f0">whoami</span>, <span style="color:#4ad8f0">date</span>`,
-  'about': `<span style="color:#dbe2fd">Ghazy Al Muhalla — Pelajar &amp; Junior Web Developer.<br>Tertarik pada Desain Web &amp; Kreativitas Digital dari Deli Serdang, Indonesia.</span>`,
-  'skills': `<span style="color:#4ad8f0">Core Architecture Skills:</span><br>
-             - HTML/CSS/Web Dev: <span style="color:#ddb8ff">95%</span><br>
-             - UI/UX Design: <span style="color:#ddb8ff">85%</span><br>
-             - Desain Poster &amp; Canva: <span style="color:#ddb8ff">80%</span><br>
-             - JavaScript Dasar: <span style="color:#ddb8ff">75%</span>`,
-  'contact': `<span style="color:#4ad8f0">Establish Connection:</span><br>
-               - Email: <span style="color:#ddb8ff">ghozyalmuhalla@gmail.com</span><br>
-               - WhatsApp: <span style="color:#ddb8ff">08998215739</span><br>
-               - Base: <span style="color:#ddb8ff">Bulu Cina, Deli Serdang</span>`,
-  'projects': `<span style="color:#4ad8f0">Selected Works:</span><br>
-               1. <span style="color:#ddb8ff">Desain Website Sekolah</span>: Konsep portal sekolah modern.<br>
-               2. <span style="color:#ddb8ff">Desain Website UMKM</span>: Website promosi & reservasi makanan.<br>
-               3. <span style="color:#ddb8ff">Poster Ilustrasi Digital</span>: Portofolio karya bertema edukasi & sosial.<br>
-               4. <span style="color:#ddb8ff">Nova Ring Store</span>: Desain e-commerce produk cerdas.`,
-  'whoami': `<span style="color:#dbe2fd">guest@ghazy.dev — Cyber Space Voyager. Access: GRANTED.</span>`,
-  'date': `<span style="color:#dbe2fd">${new Date().toString()}</span>`
-};
-
-termBody.addEventListener('click', () => {
-  termIn.focus();
-});
-
-termIn.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    const input = termIn.value.trim();
-    const cmd = input.toLowerCase();
-    let reply = '';
+    </section>
     
-    if (input) {
-      if (cmd === 'clear') {
-        termOut.innerHTML = '';
-      } else if (cmds[cmd]) {
-        reply = cmds[cmd];
-      } else {
-        reply = `<span style="color:#ffb4ab">Command not found: '${input}'. Type 'help' for available commands.</span>`;
-      }
-      
-      if (cmd !== 'clear') {
-        const promptLine = `<div class="mt-1"><span class="text-tertiary-fixed-dim">visitor@ghazy</span><span class="text-on-surface-variant">:</span><span class="text-secondary">~</span><span class="text-on-surface-variant">$&nbsp;</span>${input}</div>`;
-        termOut.innerHTML += promptLine + `<div>${reply}</div>`;
-      }
-    } else {
-      termOut.innerHTML += `<div><span class="text-tertiary-fixed-dim">visitor@ghazy</span><span class="text-on-surface-variant">:</span><span class="text-secondary">~</span><span class="text-on-surface-variant">$&nbsp;</span></div>`;
-    }
-    
-    termIn.value = '';
-    termBody.scrollTop = termBody.scrollHeight;
-  }
-});
-
-// ── PROJECT FILTER ──
-const filterBtns = document.querySelectorAll('.filter-btn');
-const projCards = document.querySelectorAll('.proj-card');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => {
-      b.classList.remove('active', 'border-secondary', 'bg-secondary/10', 'text-secondary');
-      b.classList.add('border-glass-border', 'text-on-surface-variant');
-    });
-    btn.classList.add('active', 'border-secondary', 'bg-secondary/10', 'text-secondary');
-    btn.classList.remove('border-glass-border', 'text-on-surface-variant');
-
-    const filter = btn.dataset.f;
-    projCards.forEach(card => {
-      if (filter === 'all' || card.dataset.cat === filter) {
-        card.style.display = 'block';
-        setTimeout(() => {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, 10);
-      } else {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(12px)';
-        setTimeout(() => {
-          card.style.display = 'none';
-        }, 350);
-      }
-    });
-  });
-});
-
-// ── COPY EMAIL ──
-const copyBtn = document.getElementById('copy-email-btn');
-if (copyBtn) {
-  copyBtn.addEventListener('click', () => {
-    const email = 'ghozyalmuhalla@gmail.com';
-    navigator.clipboard.writeText(email).then(() => {
-      const originalText = copyBtn.textContent;
-      copyBtn.textContent = 'check';
-      copyBtn.style.color = '#4ad8f0';
-      setTimeout(() => {
-        copyBtn.textContent = originalText;
-        copyBtn.style.color = '';
-      }, 2000);
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
-  });
-}
-
-// ── FORM TRANSMISSION ──
-const sendBtn = document.getElementById('send-btn');
-if (sendBtn) {
-  sendBtn.addEventListener('click', () => {
-    const name = document.getElementById('contact-name').value.trim();
-    const email = document.getElementById('contact-email').value.trim();
-    const message = document.getElementById('contact-message').value.trim();
-    
-    if (!name || !email || !message) {
-      alert('Semua bidang harus diisi untuk menginisialisasi transmisi.');
-      return;
-    }
-
-    const originalText = sendBtn.innerHTML;
-    sendBtn.disabled = true;
-    sendBtn.innerHTML = `<span class="material-symbols-outlined text-base animate-spin">sync</span> TRANSMITTING...`;
-
-    setTimeout(() => {
-      sendBtn.innerHTML = `<span class="material-symbols-outlined text-base">done_all</span> TRANSMISSION SUCCESSFUL`;
-      sendBtn.style.background = '#ddb8ff';
-      sendBtn.style.color = '#0b1326';
-      
-      document.getElementById('contact-name').value = '';
-      document.getElementById('contact-email').value = '';
-      document.getElementById('contact-message').value = '';
-
-      setTimeout(() => {
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = originalText;
-        sendBtn.style.background = '';
-        sendBtn.style.color = '';
-      }, 3000);
-    }, 1500);
-  });
-}
-</script>
+    <footer>
+        <p>&copy; 2026 Lumina Photography Studio. All rights reserved.</p>
+    </footer>
 </body>
 </html>
