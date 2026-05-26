@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nova Ring | Smart Health Ring of the Future</title>
+  <meta name="description" content="Nova Ring is a premium smart ring that monitors heart rate, sleep quality, and active metrics in a sleek, lightweight form factor."/>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <style>
+    /* VARIABLES & THEME */
+    :root {
+      --bg: #090b0e;
+      --surface: #11141a;
+      --border: rgba(255, 255, 255, 0.08);
+      
+      /* Ring Metallic Gradients (will be updated dynamically via JS) */
+      --ring-grad: linear-gradient(135deg, #1f2937 0%, #111827 50%, #374151 100%);
+      --ring-glow: 0 0 30px rgba(74, 222, 128, 0.15);
+      
+      --accent: #10b981; /* Emerald green */
+      --accent-glow: rgba(16, 185, 129, 0.4);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --transition-speed: 0.35s;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* BACK TO PORTFOLIO BUTTON */
+    .back-btn {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: rgba(17, 20, 26, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all var(--transition-speed);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-btn:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 15px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* HEADER */
+    header {
+      padding: 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 90;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 11rem; /* Space for the floating back-to-portfolio button */
+    }
+
+    @media (max-width: 768px) {
+      .logo-container {
+        margin-left: 0;
+      }
+      header {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-top: 5.5rem; /* Space for back button */
+      }
+      .back-btn {
+        top: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .back-btn:hover {
+        transform: translateX(-50%) translateY(-2px);
+      }
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-badge {
+      font-size: 0.65rem;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color var(--transition-speed);
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .cart-trigger {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: all var(--transition-speed);
+    }
+
+    .cart-trigger:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 0.65rem;
+      font-weight: bold;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 6rem 0 8rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 3rem;
+        gap: 3rem;
+      }
+    }
+
+    .hero-left h1 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .hero-left h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    .hero-left p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .cta-group {
+        justify-content: center;
+      }
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 99px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-speed);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border: 1px solid var(--text);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text);
+    }
+
+    /* INTERACTIVE CSS RING VISUALIZER */
+    .visualizer-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 380px;
+    }
+
+    /* Pulse sensor background */
+    .ring-sensor-glow {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: var(--accent);
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.15;
+      animation: pulse-glow 2.5s infinite alternate;
+    }
+
+    @keyframes pulse-glow {
+      0% { transform: scale(0.9); opacity: 0.1; }
+      100% { transform: scale(1.1); opacity: 0.25; }
+    }
+
+    /* 3D Looking metallic ring via pure CSS gradients */
+    .css-ring {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--ring-grad);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 
+        0 20px 40px rgba(0,0,0,0.5), 
+        inset 0 2px 5px rgba(255,255,255,0.4),
+        inset 0 -2px 10px rgba(0,0,0,0.8),
+        var(--ring-glow);
+      transition: all 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+      transform-style: preserve-3d;
+      transform: rotateX(20deg) rotateY(-10deg);
+    }
+
+    /* Inner hollow space of the ring */
+    .css-ring-inner {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #090b0e; /* Matches body bg to look hollow */
+      box-shadow: 
+        inset 0 10px 25px rgba(0,0,0,0.9),
+        0 1px 3px rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Pulsing inside LED sensor */
+    .sensor-led {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--accent);
+      position: absolute;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: led-blink 1.5s infinite;
+    }
+
+    @keyframes led-blink {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+
+    /* COLOR SELECTOR */
+    .customizer-box {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .customizer-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .customizer-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .color-options {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .color-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all var(--transition-speed);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .color-dot.active {
+      border-color: var(--text);
+      transform: scale(1.15);
+    }
+
+    .dot-black { background: linear-gradient(135deg, #2b313d, #111317); }
+    .dot-silver { background: linear-gradient(135deg, #e5e7eb, #9ca3af); }
+    .dot-gold { background: linear-gradient(135deg, #fbbf24, #d97706); }
+
+    /* SPECIFICATIONS (HOTSPOTS) */
+    .features-hotspots {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .hotspots-title {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .hotspots-title h2 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .hotspots-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .hotspots-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .spec-item {
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+    }
+
+    .spec-item:hover, .spec-item.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.05);
+    }
+
+    .spec-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .spec-item-content h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .spec-item-content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Dynamic Visualizer with pulsing hotspots */
+    .specs-visualizer {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 350px;
+    }
+
+    .visualizer-ring-svg {
+      width: 220px;
+      height: 220px;
+      border: 4px solid rgba(255,255,255,0.03);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .hotspot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .hotspot::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      opacity: 0.6;
+      animation: hotspot-pulse 1.8s infinite;
+    }
+
+    @keyframes hotspot-pulse {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    /* Hotspot coordinate settings */
+    .spot-sensor { top: 25px; left: 50%; transform: translateX(-50%); }
+    .spot-battery { top: 110px; right: 5px; }
+    .spot-waterproof { bottom: 20px; left: 50%; transform: translateX(-50%); }
+
+    /* Tooltip box display in center */
+    .hotspot-tooltip {
+      position: absolute;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 200px;
+      font-size: 0.8rem;
+      z-index: 20;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .hotspot-tooltip.active {
+      opacity: 1;
+    }
+
+    /* SHOPPING CART DRAWER */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 400px;
+      max-width: 100%;
+      height: 100dvh;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      z-index: 1000;
+      padding: 2.5rem 2rem;
+      box-shadow: -20px 0 50px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      transition: right 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+    }
+
+    @media (max-width: 480px) {
+      .cart-drawer {
+        width: 100%;
+      }
+    }
+
+    .cart-drawer.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .cart-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .close-cart-btn {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .cart-items {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-preview {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-item-info h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .cart-item-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .cart-item-price {
+      margin-left: auto;
+      font-weight: bold;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: var(--accent);
+      border: none;
+      color: var(--bg);
+      padding: 1rem 0;
+      border-radius: 99px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color var(--transition-speed);
+    }
+
+    .checkout-btn:hover {
+      background-color: #34d399;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 4rem 0;
+      background: #060709;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color var(--transition-speed);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .copyright {
+      width: 100%;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
+      margin-top: 3rem;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING BACK TO PORTFOLIO BUTTON -->
+  <a href="./index.html#projects" class="back-btn">
+    <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span>
+    <span>Kembali</span>
+  </a>
+
+  <!-- HEADER -->
+  <header class="container">
+    <div class="logo-container">
+      <span class="logo-text">NOVA</span>
+      <span class="logo-badge">RING</span>
+    </div>
+    <nav>
+      <a href="#customizer">Kustomisasi</a>
+      <a href="#features">Spesifikasi</a>
+    </nav>
+    <button class="cart-trigger" onclick="toggleCart()">
+      <span class="material-symbols-outlined" style="font-size: 20px;">shopping_bag</span>
+      <span class="cart-badge" id="cart-counter">0</span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-left">
+      <h1>Kesehatan Anda.<br>Terangkum Di Jari.</h1>
+      <p>Nova Ring melacak detak jantung, pola tidur, dan aktivitas harian dengan akurasi klinis dalam balutan desain titanium yang ultra-ringan dan elegan.</p>
+      <div class="cta-group">
+        <button class="btn btn-primary" onclick="addToCart()">Pre-Order Sekarang</button>
+        <a href="#features" class="btn btn-secondary">Pelajari Spesifikasi</a>
+      </div>
+    </div>
+    <div class="hero-right visualizer-container">
+      <!-- DYNAMIC RING VIEW -->
+      <div class="ring-sensor-glow" id="sensor-glow"></div>
+      <div class="css-ring" id="ring-view">
+        <div class="css-ring-inner">
+          <div class="sensor-led" id="sensor-led"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMIZER -->
+  <section class="container" id="customizer" style="padding-bottom: 6rem;">
+    <div class="customizer-box">
+      <h3 class="customizer-title">Pilih Gaya Anda</h3>
+      <p class="customizer-sub" id="color-name">Matte Black (Satin Brushed Finish)</p>
+      
+      <div class="color-options">
+        <div class="color-dot dot-black active" onclick="changeColor('black')" title="Matte Black"></div>
+        <div class="color-dot dot-silver" onclick="changeColor('silver')" title="Chroma Silver"></div>
+        <div class="color-dot dot-gold" onclick="changeColor('gold')" title="Aura Gold"></div>
+      </div>
+      
+      <p style="font-size: 0.8rem; color: var(--text-muted);">Pengiriman gelombang pertama dimulai Juli 2026.</p>
+    </div>
+  </section>
+
+  <!-- SPECIFICATIONS (HOTSPOTS) -->
+  <section class="features-hotspots container" id="features">
+    <div class="hotspots-title">
+      <h2>Teknologi Sensor Presisi</h2>
+      <p style="color: var(--text-muted); margin-top: 0.5rem;">Ketuk sensor atau spesifikasi di bawah untuk detail lengkap</p>
+    </div>
+
+    <div class="hotspots-wrapper">
+      <!-- Hotspot visualizer -->
+      <div class="specs-visualizer">
+        <div class="visualizer-ring-svg">
+          <!-- Pulse spots -->
+          <div class="hotspot spot-sensor" onclick="triggerHotspot('sensor')" title="Biometric Sensor"></div>
+          <div class="hotspot spot-battery" onclick="triggerHotspot('battery')" title="Cell Battery"></div>
+          <div class="hotspot spot-waterproof" onclick="triggerHotspot('waterproof')" title="Waterproof Layer"></div>
+        </div>
+        
+        <!-- Center Tooltip Box -->
+        <div class="hotspot-tooltip" id="specs-tooltip">
+          Pilih hotspot untuk membaca teknologi sensor.
+        </div>
+      </div>
+
+      <!-- Specs List Trigger -->
+      <div class="specs-list">
+        <div class="spec-item active" id="item-sensor" onclick="triggerHotspot('sensor')">
+          <div class="spec-icon-box">
+            <span class="material-symbols-outlined">favorite</span>
+          </div>
+          <div class="spec-item-content">
+            <h3>Sensor Biometrik 4-Saluran</h3>
+            <p>Memonitor detak jantung harian, saturasi oksigen darah (SpO2), dan variabilitas detak jantung (HRV) setiap saat.</p>
+          </div>
+        </div>
+
+        <div class="spec-item" id="item-battery" onclick="triggerHotspot('battery')">
+          <div class="spec-icon-box">
+            <span class="material-symbols-outlined">battery_very_low</span>
+          </div>
+          <div class="spec-item-content">
+            <h3>Daya Tahan Baterai 7 Hari</h3>
+            <p>Baterai sel mikro berdaya tahan ekstra lama. Pengisian cepat nirkabel 0-100% hanya dalam 45 menit.</p>
+          </div>
+        </div>
+
+        <div class="spec-item" id="item-waterproof" onclick="triggerHotspot('waterproof')">
+          <div class="spec-icon-box">
+            <span class="material-symbols-outlined">water_drop</span>
+          </div>
+          <div class="spec-item-content">
+            <h3>Kedap Air Hingga 50 Meter</h3>
+            <p>Peringkat perlindungan IP68 & 5ATM. Aman dikenakan saat mandi, berenang, maupun menyelam dangkal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOPPING CART DRAWER -->
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h2>Keranjang Belanja</h2>
+      <button class="close-cart-btn" onclick="toggleCart()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="cart-items" id="cart-items-container">
+      <!-- Empty state / loaded via JS -->
+      <p style="color: var(--text-muted); text-align: center; margin-top: 4rem;" id="cart-empty-msg">Keranjang kosong. Tambahkan item pre-order.</p>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total Estimasi</span>
+        <span id="cart-total">Rp 0</span>
+      </div>
+      <button class="checkout-btn" onclick="checkoutAlert()">Proses Checkout</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <div class="logo-container" style="margin-left: 0;">
+        <span class="logo-text">NOVA</span>
+        <span class="logo-badge">RING</span>
+      </div>
+      <div class="footer-links">
+        <a href="#customizer">Kustomisasi</a>
+        <a href="#features">Spesifikasi</a>
+        <a href="./index.html">Portofolio</a>
+      </div>
+      <div class="copyright">
+        © 2026 Nova Ring Corp. Seluruh hak cipta dilindungi. Dibuat oleh GHAZY.DEV
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // 1. PRODUCT COLORS CONFIGURATION
+    const colors = {
+      black: {
+        name: "Matte Black (Satin Brushed Finish)",
+        accent: "#10b981", // green sensor glow
+        ringGrad: "linear-gradient(135deg, #2d3748 0%, #1a202c 50%, #4a5568 100%)",
+        ringGlow: "0 0 30px rgba(16, 185, 129, 0.15)"
+      },
+      silver: {
+        name: "Chroma Silver (Mirror Polished Finish)",
+        accent: "#06b6d4", // cyan sensor glow
+        ringGrad: "linear-gradient(135deg, #f3f4f6 0%, #d1d5db 50%, #ffffff 100%)",
+        ringGlow: "0 0 35px rgba(6, 182, 210, 0.25)"
+      },
+      gold: {
+        name: "Aura Gold (18K PVD Gold Electroplated)",
+        accent: "#eab308", // gold/yellow sensor glow
+        ringGrad: "linear-gradient(135deg, #fef08a 0%, #ca8a04 50%, #fef08a 100%)",
+        ringGlow: "0 0 35px rgba(234, 179, 8, 0.25)"
+      }
+    };
+
+    let selectedColorKey = 'black';
+
+    function changeColor(colorKey) {
+      selectedColorKey = colorKey;
+      const config = colors[colorKey];
+      
+      // Update Active Dot UI
+      document.querySelectorAll('.color-dot').forEach(dot => dot.classList.remove('active'));
+      document.querySelector(`.dot-${colorKey}`).classList.add('active');
+
+      // Update Text UI
+      document.getElementById('color-name').textContent = config.name;
+
+      // Update CSS Variables (Metallic gradient & glow on Ring)
+      const root = document.documentElement;
+      root.style.setProperty('--ring-grad', config.ringGrad);
+      root.style.setProperty('--ring-glow', config.ringGlow);
+      root.style.setProperty('--accent', config.accent);
+      root.style.setProperty('--accent-glow', `rgba(${hexToRgb(config.accent)}, 0.4)`);
+
+      // Update LED sensor glow
+      document.getElementById('sensor-led').style.backgroundColor = config.accent;
+      document.getElementById('sensor-led').style.boxShadow = `0 0 15px ${config.accent}`;
+      document.getElementById('sensor-glow').style.backgroundColor = config.accent;
+    }
+
+    // Helper to extract RGB from hex code for CSS transparency
+    function hexToRgb(hex) {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : `16, 185, 129`;
+    }
+
+    // 2. SPECIFICATION HOTSPOTS
+    const hotspotsData = {
+      sensor: {
+        title: "Sensor Biometrik 4-Saluran",
+        desc: "Ditempatkan di bagian dalam cincin untuk menyentuh permukaan jari secara langsung, memantau data biologis secara akurat.",
+        elemId: "item-sensor"
+      },
+      battery: {
+        title: "Baterai Sel Mikro Lithium",
+        desc: "Kepadatan energi tinggi memungkinkan ukuran sekecil mungkin dengan daya tahan operasi mencapai 7 hari penuh.",
+        elemId: "item-battery"
+      },
+      waterproof: {
+        title: "Pelapisan Kedap Air Resin",
+        desc: "Menggunakan bahan resin epoksi tebal dan tahan tekanan, mampu meredam air masuk sampai kedalaman 50 meter.",
+        elemId: "item-waterproof"
+      }
+    };
+
+    function triggerHotspot(key) {
+      const data = hotspotsData[key];
+      const tooltip = document.getElementById('specs-tooltip');
+      
+      // Update spec item cards active class
+      document.querySelectorAll('.spec-item').forEach(card => card.classList.remove('active'));
+      document.getElementById(data.elemId).classList.add('active');
+
+      // Update Tooltip Content & Animation
+      tooltip.classList.remove('active');
+      setTimeout(() => {
+        tooltip.innerHTML = `<strong>${data.title}</strong><br><span style="color: var(--text-muted); font-size:0.75rem;">${data.desc}</span>`;
+        tooltip.classList.add('active');
+      }, 100);
+    }
+
+    // Initialize first tooltip
+    triggerHotspot('sensor');
+
+    // 3. CART SYSTEM
+    let cartQuantity = 0;
+    const cartDrawer = document.getElementById('cart-drawer');
+    const cartCounter = document.getElementById('cart-counter');
+    const emptyMsg = document.getElementById('cart-empty-msg');
+    const cartContainer = document.getElementById('cart-items-container');
+    const cartTotal = document.getElementById('cart-total');
+
+    function toggleCart() {
+      cartDrawer.classList.toggle('active');
+    }
+
+    function addToCart() {
+      cartQuantity++;
+      cartCounter.textContent = cartQuantity;
+      
+      // Render cart item list
+      emptyMsg.style.display = 'none';
+      
+      // Remove previous dynamic items if they exist
+      const items = cartContainer.querySelectorAll('.cart-item');
+      items.forEach(it => it.remove());
+
+      const itemHtml = document.createElement('div');
+      itemHtml.className = 'cart-item';
+      itemHtml.innerHTML = `
+        <div class="cart-item-preview">
+          <div class="css-ring" style="width:36px; height:36px; border-width: 1px; background:${colors[selectedColorKey].ringGrad};"></div>
+        </div>
+        <div class="cart-item-info">
+          <h3>Nova Smart Ring</h3>
+          <p>Warna: ${selectedColorKey.toUpperCase()} - Ukuran standar (8)</p>
+          <p>Kuantitas: ${cartQuantity}</p>
+        </div>
+        <div class="cart-item-price">Rp ${(2499000 * cartQuantity).toLocaleString('id-ID')}</div>
+      `;
+      cartContainer.appendChild(itemHtml);
+
+      // Update total price
+      cartTotal.textContent = `Rp ${(2499000 * cartQuantity).toLocaleString('id-ID')}`;
+
+      // Open drawer automatically to show added item
+      cartDrawer.classList.add('active');
+    }
+
+    function checkoutAlert() {
+      if (cartQuantity === 0) {
+        alert("Keranjang Anda masih kosong!");
+        return;
+      }
+      alert("Terima kasih! Pemesanan pre-order Anda sedang diproses. Tautan pembayaran aman telah dikirimkan ke kontak Anda.");
+      cartQuantity = 0;
+      cartCounter.textContent = cartQuantity;
+      emptyMsg.style.display = 'block';
+      cartContainer.querySelectorAll('.cart-item').forEach(it => it.remove());
+      cartTotal.textContent = "Rp 0";
+      toggleCart();
+    }
+  </script>
+</body>
+</html>
